@@ -1,0 +1,41 @@
+<div class="row m-0 main-container justify-content-center align-items-center py-5 px-3">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4 inner-container bg-whit rounded-4 shadow-lg p-4"> 
+        <button class="btn btn-link back-button p-0" routerLink="../signUp"><i class="fa fa-arrow-left fs-4"></i></button>
+        <div class="d-flex flex-column align-items-center col-12">
+            <img src="../../../../assets/images/logo/logo.png" alt="Company Logo" class="login-logo my-4">
+            <form class="col-12 py-3" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+                <h2 class="text-center mb-4 login-title">Welcome Back!</h2>
+
+                <div class="mb-3 form-group">
+                    <label for="emailAddress" class="form-label fw-bold"><i class="fa fa-envelope me-2"></i> Email
+                        Address</label>
+                    <input type="email" class="form-control form-input-custom" id="emailAddress"
+                        aria-describedby="emailHelp" placeholder="Enter your email address" formControlName="email">
+                </div>
+                <small *ngIf="signInForm.controls['email'].hasError('required') && signInForm.controls['email'].touched" class="text-danger">Email is required</small>
+                <small *ngIf="signInForm.controls['email'].hasError('email') && signInForm.controls['email'].touched" class="text-danger">Invalid Email format</small>
+
+                <div class="mb-3 form-group">
+                    <label for="password" class="form-label fw-bold"><i class="fa fa-lock me-2"></i> Password</label>
+                    <input type="password" class="form-control form-input-custom" id="password"
+                        placeholder="Enter your password" formControlName="password">
+                        <small *ngIf="signInForm.controls['password'].hasError('required') && signInForm.controls['password'].touched" class="text-danger">Password is required</small>
+                    <div class="text-end mt-2"> <a href="#" class="forgot-password-link">Forgot Password?</a>
+                    </div>
+                </div>
+
+                <div class="mb-4 text-center pt-3"> <button type="submit"
+                        class="btn login-btn px-5 col-12" [disabled]="!signInForm.valid">Login</button> </div>
+                <div class="mb-3 text-center social-login-section"> <a routerLink="../signUp"
+                        class="btn btn-link text-decoration-none signup-link">Don't have an account? Sign Up</a>
+                    <p class="social-text mt-3 mb-2">Or Sign In with</p>
+                    <div class="d-flex justify-content-center gap-3 social-icons"> <a href="#"
+                            class="social-icon-circle"><i class="fa-brands fa-google"></i></a>
+                        <a href="#" class="social-icon-circle"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="social-icon-circle"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

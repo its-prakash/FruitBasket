@@ -1,0 +1,553 @@
+/* Overall page background and global font */
+.main-page-wrapper {
+    background: radial-gradient(circle at center, #1a2f27 0%, #0a0e0c 70%, #000000 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Reverted to original font */
+    color: #333; /* Default text color for light sections */
+}
+
+/* --- Hero Section (from About Us, for reference) --- */
+.about-hero-section {
+    background-image: url("../../../../assets/images/background/about-2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    min-height: 60vh;
+    height: 30rem;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.about-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+.about-hero-section > * {
+    position: relative;
+    z-index: 2;
+}
+.about-hero-section .container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.about-hero-section h1 {
+    font-size: 4.2rem;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+.about-hero-section p {
+    font-size: 1.6rem; /* Kept previous adjusted size for this specific section */
+    color: rgba(255, 255, 255, 0.9);
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
+.about-us-btn {
+    background-color: #4CAF50;
+    border: 2px solid #4CAF50;
+    color: white;
+    padding: 0.9rem 2.5rem;
+    border-radius: 50px !important;
+    font-weight: bold;
+    font-size: 1.15rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+    text-decoration: none;
+    display: inline-block;
+}
+.about-us-btn:hover {
+    background-color: #43A047;
+    border-color: #43A047;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
+}
+
+/* --- General Section Styling (from About Us, for reference) --- */
+section {
+    padding: 5rem 0;
+}
+.story-section, .values-section {
+    background-color: #ffffff;
+}
+.mission-vision-section {
+    background-color: #f0f2f5;
+}
+.section-heading {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.section-heading::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #4CAF50;
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+}
+.story-content-container .section-heading::after {
+    margin-left: 0;
+}
+.section-text { /* Used in About Us general sections */
+    font-size: 1.1rem; /* Kept from previous adjustment */
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+.section-text-alt {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* Image container for the "Our Journey" section (from About Us, for reference) */
+.img-container {
+    background-image: url("../../../../assets/images/background/my-journey.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px; /* REVERTED: Back to original 400px */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transform: rotate(-1deg);
+    transition: transform 0.3s ease;
+}
+.img-container:hover {
+    transform: rotate(0deg) scale(1.01);
+}
+.story-content-container {
+    padding-left: 3rem;
+    padding-right: 1rem;
+}
+.milestone-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+}
+.milestone-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem; /* Slightly more space between list items */
+    color: #555;
+    font-size: 1.05rem;
+}
+.milestone-list li::before {
+    content: "\f058";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #4CAF50;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+/* --- BEGIN HOME PAGE CSS --- */
+
+body {
+    font-family: 'Arial', sans-serif; /* A more common fallback, or keep original if specific */
+    overflow-x: hidden;
+    line-height: 1.6; /* Improved default line height */
+}
+
+/* --- Main Sections Layout & Spacing --- */
+.main-section {
+    min-height: 550px; /* Increased min-height for more presence and spacing */
+    align-items: center;
+    padding: 4rem 0; /* More generous vertical padding for sections */
+}
+
+/* Adjust padding for content columns within main-section for desktop */
+.main-section > .col-lg-6 {
+    padding: 3rem 4rem !important; /* More generous padding for content */
+}
+/* Ensure the image column has 0 padding as intended */
+.main-section > .col-lg-6.p-0 {
+    padding: 0 !important;
+}
+
+/* --- Hero Section Content (Home Page First Section) --- */
+.custom-h1 {
+    font-size: 4.5rem; /* Kept original size as requested */
+    line-height: 1.15; /* Adjusted line height for readability */
+    margin-bottom: 1.5rem; /* More space below heading */
+}
+
+.custom-h1-color {
+    color: limegreen; /* REVERTED: Back to limegreen */
+    font-style: oblique; /* REVERTED: Back to oblique */
+}
+
+.main-section p { /* Styling for paragraphs in main sections on Home Page */
+    font-size: 1.1rem; /* ADJUSTED: Increased paragraph font size */
+    line-height: 1.75; /* ADJUSTED: More generous line height */
+    margin-bottom: 2rem; /* More space below paragraphs */
+    color: #555;
+}
+
+/* --- Buttons --- */
+.btn-custom {
+    border-radius: 1.5rem 0.5rem; /* REVERTED: Original border-radius */
+    background-color: limegreen; /* REVERTED: Back to limegreen */
+    border: 2px solid rgb(32, 230, 32); /* REVERTED: Original border color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Kept original shadow */
+    text-decoration: none;
+    color: black; /* REVERTED: Back to black text */
+    font-size: 1.05rem; /* ADJUSTED: Slightly increased button text size */
+    padding: 0.9rem 2.5rem; /* More generous padding */
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-custom:hover {
+    background-color: rgb(32, 230, 32); /* REVERTED: Original hover color */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px); /* Slight lift effect */
+    color: black; /* REVERTED: Keep text black on hover */
+}
+
+.btn-custom-light {
+    background-color: #f8f9fa; /* REVERTED: Original light color */
+    color: black;
+    border: 2px solid #ced4da;
+}
+
+.btn-custom-light:hover {
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+    color: black;
+}
+
+/* --- Section Image --- */
+.section-image {
+    max-height: 500px; /* REVERTED: Back to original 500px */
+    width: 100%;
+    object-fit: contain; /* Kept original object-fit */
+    padding: 20px; /* Kept original padding */
+}
+
+/* --- Mango Section (Second main-section) --- */
+/* Specific styling for the second main-section background */
+.row.m-0.main-section:nth-of-type(2) {
+    background-color: #f8f8f8; /* A light background for contrast */
+}
+
+.main-section h2 { /* Heading in Mango section */
+    font-size: 2.8rem; /* ADJUSTED: Slightly increased heading size */
+    line-height: 1.3;
+    margin-bottom: 1.5rem; /* More space below heading */
+    color: #212529;
+    font-weight: bold;
+}
+
+/* Specific styles for paragraph below h2 in mango section */
+.main-section .col-lg-6 > p {
+    font-size: 1.05rem; /* ADJUSTED: Increased paragraph font size */
+    line-height: 1.7;
+    margin-bottom: 2rem; /* More space below paragraph */
+    color: #555;
+}
+
+/* --- Statistics --- */
+.statistic-item {
+    text-align: center;
+    flex: 1 1 auto;
+    min-width: 130px; /* Slightly increased min-width for better spacing */
+    margin: 1rem; /* More margin for spacing between items */
+}
+
+.statistic-value {
+    font-size: 3.2rem; /* ADJUSTED: Slightly larger numbers */
+    font-weight: bold;
+    color: black; /* REVERTED: Back to black */
+    text-decoration: underline;
+    text-decoration-color: limegreen;
+    text-underline-offset: 6px; /* Slightly more offset */
+    margin-bottom: 0.8rem; /* More space below number */
+}
+
+.statistic-label {
+    font-size: 1.05rem; /* ADJUSTED: Slightly larger labels */
+    color: #333;
+    font-weight: normal;
+}
+
+/* --- How-to Section (Third section with list) --- */
+/* Overall padding for this specific section */
+.row.m-0:nth-of-type(3) { /* Target the third main section implicitly */
+    padding: 4rem 0; /* Consistent vertical padding */
+}
+/* Adjust padding for content columns if needed */
+.row.m-0:nth-of-type(3) > .col-lg-6 {
+    padding: 3rem 4rem !important; /* Consistent padding with first section */
+}
+
+.row.m-0:nth-of-type(3) h2 { /* Heading on the left side */
+    font-size: 2.5rem; /* ADJUSTED: Slightly increased heading size */
+    line-height: 1.3;
+    font-weight: bold;
+    color: #212529;
+}
+
+.bg-lime-heading {
+    background-color: limegreen; /* REVERTED: Back to limegreen */
+    color: black; /* REVERTED: Back to black */
+    font-style: oblique; /* REVERTED: Back to oblique */
+    display: inline-block;
+    padding: 0.7rem 1.8rem; /* More generous padding */
+    border-radius: 5px; /* REVERTED: Back to original border-radius */
+    margin-bottom: 2rem !important; /* More space below the heading tag */
+    font-size: 1.05rem; /* ADJUSTED: Clearer font size */
+}
+
+.how-to-list {
+    padding-left: 20px; /* Kept original padding */
+}
+.how-to-list li {
+    margin-bottom: 1.8rem; /* ADJUSTED: More space between list items */
+}
+.how-to-list h3 { /* Step headings */
+    font-size: 1.6rem; /* ADJUSTED: Larger step headings */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.6rem; /* Slightly more space below step heading */
+}
+.how-to-list p { /* Step descriptions */
+    font-size: 0.98rem; /* ADJUSTED: Slightly increased text size */
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* --- Fruit Cards Section --- */
+.fruit-cards-section {
+    background-color: #f8f8f8; /* Kept light background */
+    padding: 4rem 0; /* Consistent vertical padding */
+}
+
+.fruit-card {
+    width: 20rem; /* REVERTED: Back to original 20rem */
+    height: auto;
+    border: none;
+    border-radius: 10px; /* REVERTED: Back to original border-radius */
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly refined shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.fruit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced hover shadow */
+}
+
+.fruit-card-img {
+    height: 15rem; /* REVERTED: Back to original 15rem */
+    width: 15rem; /* REVERTED: Back to original 15rem */
+    object-fit: contain;
+    margin-bottom: 1.5rem; /* More space below image */
+}
+
+.card-title {
+    font-size: 1.5rem; /* Kept original size */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.card-price {
+    font-size: 1.8rem; /* Kept original size */
+    color: limegreen; /* REVERTED: Back to limegreen */
+    margin-bottom: 1rem; /* More space below price */
+}
+
+.card-text {
+    font-size: 0.95rem; /* ADJUSTED: Consistent with other small text */
+    color: #666;
+    margin-bottom: 1.5rem; /* Space before button */
+}
+
+/* --- Call to Action Section (from About Us, for reference) --- */
+.cta-section {
+    background-color: #212529;
+    background-image: url('http://googleusercontent.com/image_generation_content/0');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 0;
+    padding: 5rem 0;
+}
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+.cta-section .section-heading {
+    color: white;
+    margin-bottom: 1.5rem;
+}
+.cta-section .section-heading::after {
+    background-color: white;
+}
+.cta-section .lead {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+}
+.cta-btn {
+    background-color: #4CAF50;
+    border: 2px solid #4CAF50;
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 50px !important;
+    font-weight: bold;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+    text-decoration: none;
+    display: inline-block;
+}
+.cta-btn:hover {
+    background-color: #43A047;
+    border-color: #43A047;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 991.98px) { /* Lg and down */
+    .custom-h1 {
+        font-size: 3.5rem; /* Adjusted for smaller screens */
+        text-align: center;
+    }
+    .main-section {
+        flex-direction: column; /* Stack columns */
+        text-align: center;
+        min-height: auto; /* Allow height to adjust naturally */
+    }
+    .main-section > div { /* Reset specific padding from desktop */
+        padding: 2.5rem !important; /* Adjusted padding for tablet */
+    }
+    .main-section p {
+        font-size: 1.05rem; /* Adjusted paragraph size for tablet */
+    }
+    .btn-custom {
+        width: auto;
+        flex-grow: 1;
+        max-width: 180px;
+    }
+    .d-flex.flex-wrap.gap-3 {
+        justify-content: center;
+    }
+    .section-image {
+        max-height: 400px; /* Adjusted max height for smaller screens */
+    }
+    .main-section h2 {
+        font-size: 2.2rem; /* Adjusted heading size for tablet */
+    }
+    .statistic-item {
+        width: 45%;
+        max-width: 150px;
+        margin-bottom: 1.5rem;
+    }
+    .statistic-value {
+        font-size: 2.8rem;
+    }
+    .statistic-label {
+        font-size: 0.95rem;
+    }
+    .row.m-0:nth-of-type(3) > .col-lg-6 {
+        padding: 2.5rem !important;
+    }
+    .how-to-list li {
+        margin-bottom: 1.5rem; /* Adjusted list item spacing */
+    }
+    .how-to-list h3 {
+        font-size: 1.4rem;
+    }
+    .how-to-list p {
+        font-size: 0.95rem; /* Adjusted list item paragraph size */
+    }
+    .fruit-card {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 767.98px) { /* Md and down (very small mobile) */
+    .custom-h1 {
+        font-size: 2.8rem;
+    }
+    .main-section > div {
+        padding: 2rem 1.5rem !important; /* Reduced padding for mobile */
+    }
+    .main-section p {
+        font-size: 1rem; /* Further adjustment for mobile paragraph */
+    }
+    .btn-custom {
+        font-size: 1rem;
+        padding: 0.8rem 2rem;
+        max-width: none;
+        width: 100%; /* Make buttons full width */
+    }
+    .d-flex.flex-wrap.gap-3 {
+        gap: 0.8rem !important;
+        flex-direction: column;
+        align-items: center;
+    }
+    .section-image {
+        max-height: 350px;
+    }
+    .main-section h2 {
+        font-size: 1.8rem;
+    }
+    .statistic-item {
+        width: 100%;
+        max-width: 200px;
+        margin: 0.8rem auto;
+    }
+    .statistic-value {
+        font-size: 2.2rem;
+        text-underline-offset: 6px;
+    }
+    .statistic-label {
+        font-size: 0.9rem;
+    }
+    .bg-lime-heading {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+        margin-bottom: 1.5rem !important;
+    }
+    .how-to-list h3 {
+        font-size: 1.2rem;
+    }
+    .how-to-list p {
+        font-size: 0.9rem;
+    }
+}

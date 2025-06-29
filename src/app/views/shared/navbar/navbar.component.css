@@ -1,0 +1,127 @@
+.custom-navbar {
+  background-color: #93f5bf;
+  /* Changed to #93f5bf from fcfcfc based on your bg-custom */
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.bg-custom {
+  background-color: #93f5bf;
+  /* This class sets the background color of the navbar */
+  color: white;
+  /* This will affect text directly inside .bg-custom if not overridden */
+}
+
+/* Note: The 'foody-brand' class is commented out in your HTML, but kept here for reference if you re-enable it. */
+/* .foody-brand {
+  font-family: 'Georgia', serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-left: 60px;
+} */
+
+.navbar-nav .nav-link {
+  color: #666;
+  /* Default link color */
+  font-weight: 500;
+  margin: 0 20px;
+  transition: color 0.3s ease;
+  font-size: 1.15rem;
+  /* Increased font size for all nav links */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ff6f61;
+}
+
+.navbar-nav .nav-link.active {
+  color: #ff6f61;
+  font-weight: bold;
+  position: relative;
+}
+
+/* Underline for active link */
+.navbar-nav .nav-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  /* Adjusted to lower the underline, giving more space */
+  height: 3px;
+  /* Increased thickness of the underline */
+  background-color: #ff6f61;
+}
+
+.cart-icon {
+  color: #666;
+  margin-right: 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+}
+
+.cart-icon .fa-solid {
+  /* Targeting the Font Awesome icon within cart-icon */
+  font-size: 1.5rem !important;
+  /* Increased cart icon size */
+  line-height: 1;
+}
+
+.sign-up-btn {
+  background-color: #4ae73c;
+  border-color: #4ae73c;
+  color: white;
+  padding: 6px 25px;
+  border-radius: 1.5rem 0.5rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-right: 60px;
+}
+
+.sign-up-btn:hover {
+  background-color: #c0392b;
+  border-color: #c0392b;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 5px 0;
+  }
+
+  /* .foody-brand {
+    margin-left: 15px;
+  } */
+  .cart-icon {
+    margin-right: 0;
+    width: auto;
+    height: auto;
+  }
+
+  .sign-up-btn {
+    margin-top: 10px;
+    margin-right: 0;
+  }
+
+  .navbar-nav .nav-link.active::after {
+    bottom: -5px;
+    /* Adjust underline position for collapsed menu on smaller screens */
+    height: 2px;
+    /* Slightly thinner underline on mobile for better fit */
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 1rem;
+    /* Slightly smaller font size on mobile for better fit */
+  }
+}

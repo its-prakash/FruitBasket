@@ -1,0 +1,113 @@
+<div class="row m-0 main-body d-flex justify-content-center py-5 px-4">
+    <form class="bg-white col-12 col-sm-10 col-md-8 col-lg-6 rounded-3 px-3 px-sm-5 py-sm-3 py-2 custom-form-shadow"
+        [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <h1 class="text-center pb-4 pt-2 py-sm-0 form-title"><i class="fa fa-user-plus me-2"></i> Create Account</h1>
+
+        <div class="mb-3 form-group">
+            <label for="fullName" class="form-label fs-6 fw-bold"><i class="fa fa-user me-2"></i> Full Name</label>
+            <input type="text" class="form-control form-input-custom" id="fullName" placeholder="Enter your full name"
+                formControlName="fullName">
+            <small
+                *ngIf="signUpForm.controls['fullName'].hasError('required') && signUpForm.controls['fullName'].touched"
+                class="text-danger">Full Name is required</small>
+            <small
+                *ngIf="signUpForm.controls['fullName'].hasError('minlength') && signUpForm.controls['fullName'].touched"
+                class="text-danger">Full Name must be at least 3 characters long</small>
+            <small
+                *ngIf="signUpForm.controls['fullName'].hasError('pattern') && signUpForm.controls['fullName'].touched"
+                class="text-danger">Full Name can only contain letters and spaces</small>
+            <div id="fullNameHelp" class="form-text">Please enter your full name.</div>
+        </div>
+
+
+        <div class="mb-3 form-group">
+            <label for="username" class="form-label fs-6 fw-bold"><i class="fa fa-user-circle me-2"></i>
+                Username</label>
+            <input type="text" class="form-control form-input-custom" id="username"
+                placeholder="Choose a unique username" formControlName="username">
+            <small
+                *ngIf="signUpForm.controls['username'].hasError('required') && signUpForm.controls['username'].touched"
+                class="text-danger">Username is required</small>
+            <small
+                *ngIf="signUpForm.controls['username'].hasError('minlength') && signUpForm.controls['username'].touched"
+                class="text-danger">Username must be at least 3 characters long</small>
+            <small
+                *ngIf="signUpForm.controls['username'].hasError('maxlength') && signUpForm.controls['username'].touched"
+                class="text-danger">Username must be no more than 20 characters long</small>
+            <small
+                *ngIf="signUpForm.controls['username'].hasError('pattern') && signUpForm.controls['username'].touched"
+                class="text-danger">Username can only contain letters, numbers, and underscores</small>
+            <div id="usernameHelp" class="form-text">Please enter a unique username for your account; it will be used to
+                identify you.</div>
+        </div>
+
+
+        <div class="mb-3 form-group">
+            <label for="emailAddress" class="form-label fs-6 fw-bold"><i class="fa fa-envelope me-2"></i> Email
+                address</label>
+            <input type="email" class="form-control form-input-custom" id="emailAddress" aria-describedby="emailHelp"
+                placeholder="Enter a valid email address" formControlName="email">
+            <small *ngIf="signUpForm.controls['email'].hasError('required') && signUpForm.controls['email'].touched"
+                class="text-danger">Email is required</small>
+            <small *ngIf="signUpForm.controls['email'].hasError('email') && signUpForm.controls['email'].touched"
+                class="text-danger">Invalid Email format</small>
+            <div id="emailAddressHelp" class="form-text">Please enter a valid email address. ex: adam123@gmail.com</div>
+        </div>
+
+
+        <div class="mb-3 form-group">
+            <label for="mobileNo" class="form-label fs-6 fw-bold"><i class="fa fa-phone me-2"></i> Mobile no</label>
+            <input type="tel" class="form-control form-input-custom" id="mobileNo"
+                placeholder="Enter your 10-digit mobile number" formControlName="mobileNo">
+            <small
+                *ngIf="signUpForm.controls['mobileNo'].hasError('required') && signUpForm.controls['mobileNo'].touched"
+                class="text-danger">Mobile Number is required</small>
+            <small
+                *ngIf="signUpForm.controls['mobileNo'].hasError('pattern') && signUpForm.controls['mobileNo'].touched"
+                class="text-danger">Invalid Mobile Number format,</small>
+            <div id="mobileNoHelp" class="form-text">Please enter a 10-digit mobile number.</div>
+        </div>
+
+
+        <div class="mb-3 form-group">
+            <label for="password" class="form-label fs-6 fw-bold"><i class="fa fa-lock me-2"></i> Password</label>
+            <input type="password" class="form-control form-input-custom" id="password"
+                placeholder="Enter your password" formControlName="password">
+            <small
+                *ngIf="signUpForm.controls['password'].hasError('required') && signUpForm.controls['password'].touched"
+                class="text-danger">Password is required</small>
+            <small
+                *ngIf="signUpForm.controls['password'].hasError('minlength') && signUpForm.controls['password'].touched"
+                class="text-danger">Password must be at least 8 characters long</small>
+            <small
+                *ngIf="signUpForm.controls['password'].hasError('pattern') && signUpForm.controls['password'].touched"
+                class="text-danger">Password must contain at least one lowercase letter, one uppercase letter, one
+                number,
+                and one special character</small>
+            <div id="passwordHelp" class="form-text">Password must be at least 8 characters long and include a mix of
+                uppercase and lowercase letters, numbers, and special characters.</div>
+        </div>
+
+
+        <div class="mb-3 form-group">
+            <label for="confirmPassword" class="form-label fs-6 fw-bold"><i class="fa fa-key me-2"></i> Confirm
+                Password</label>
+            <input type="password" class="form-control form-input-custom" id="confirmPassword"
+                placeholder="Confirm your password" formControlName="confirmPassword">
+            <small
+                *ngIf="signUpForm.controls['confirmPassword'].hasError('required') && signUpForm.controls['confirmPassword'].touched"
+                class="text-danger">Confirm Password is required</small>
+            <div id="confirmPasswordHelp" class="form-text">This password must be the same as the one you entered above.
+            </div>
+        </div>
+
+
+        <div class="mb-3 text-center pt-3">
+            <button type="submit" class="btn sign-up-btn px-5 col-12 col-sm-6 col-md-4" [disabled]="!signUpForm.valid">Register</button>
+        </div>
+        <div class="mb-3 text-center">
+            <button class="btn btn-link text-decoration-none already-account-link" routerLink="../signIn">Already have
+                an account?</button>
+        </div>
+    </form>
+</div>

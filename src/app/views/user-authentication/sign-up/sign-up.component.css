@@ -1,0 +1,131 @@
+.main-body {
+    /* background: radial-gradient(circle at center, #1a2f27 0%, #0a0e0c 70%, #000000 100%); */
+    background-image: url("../../../../assets/images/contact/many-fruits.jpg");
+    min-height: 100vh; /* Ensure it takes full viewport height */
+    display: flex; /* Added flex for centering form vertically if content is short */
+    align-items: center; /* Center form vertically */
+}
+
+form{
+    background-color: #F8F9FA;
+}
+
+/* Custom shadow for the form */
+.custom-form-shadow {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* More pronounced shadow */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border */
+}
+
+.form-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333; /* Darker color for readability */
+    margin-bottom: 2.5rem; /* More space below title */
+}
+
+/* Custom styling for form inputs */
+.form-input-custom {
+    border: 1px solid #ced4da; /* Default Bootstrap input border */
+    border-radius: 0.25rem; /* Slightly rounded corners */
+    padding: 0.75rem 1rem; /* Comfortable padding */
+    transition: all 0.3s ease-in-out; /* Smooth transition for focus and hover */
+    box-shadow: none !important; /* Remove Bootstrap's default focus shadow */
+    background-color: #f8f9fa; /* Slightly off-white background */
+}
+
+.form-input-custom:focus {
+    border-color: #4CAF50; /* A nice green on focus */
+    box-shadow: 0 0 0 0.25rem rgba(76, 175, 80, 0.25) !important; /* Green glow on focus */
+    background-color: #fff; /* White background on focus */
+}
+
+.form-input-custom:not(:placeholder-shown):valid {
+    border-color: #28a745; /* Green border for valid input (if using validation) */
+}
+
+.form-input-custom:not(:placeholder-shown):invalid {
+    border-color: #dc3545; /* Red border for invalid input (if using validation) */
+}
+
+/* Style for the help text below inputs */
+.form-text {
+    font-size: 0.85rem;
+    color: #6c757d;
+    padding-top: 0.25rem; /* Small padding top */
+}
+
+/* Register button styling */
+.sign-up-btn {
+    background-color: #4CAF50; /* Green color for consistency */
+    border-color: #4CAF50;
+    color: white;
+    padding: 10px 25px; /* Adjusted padding */
+    border-radius: 1.5rem 0.5rem;
+    font-weight: bold; /* Make text bold */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.sign-up-btn:hover {
+    background-color: #43A047; /* Darker green on hover */
+    border-color: #43A047;
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+}
+
+.sign-up-btn:active {
+    transform: translateY(0); /* Press effect */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Already have account link */
+.already-account-link {
+    color: #6c757d; /* Muted color */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.already-account-link:hover {
+    color: #4CAF50; /* Green on hover */
+    text-decoration: underline !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) { /* Medium devices (tablets) and down */
+    .form-title {
+        font-size: 2.2rem; /* Smaller title on mobile */
+        margin-bottom: 2rem; /* Adjust margin */
+    }
+
+    .main-body {
+        padding-top: 2rem !important; /* Less top/bottom padding on mobile */
+        padding-bottom: 2rem !important;
+    }
+
+    form {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    .sign-up-btn {
+        padding: 8px 20px; /* Smaller padding for button */
+        font-size: 0.95rem; /* Smaller font size */
+    }
+}
+
+@media (max-width: 575.98px) { /* Small devices (landscape phones) and down */
+    .form-title {
+        font-size: 1.8rem; /* Even smaller title on very small screens */
+        margin-bottom: 1.5rem;
+    }
+
+    .main-body {
+        padding-left: 1rem !important; /* Less side padding for wrapper */
+        padding-right: 1rem !important;
+    }
+
+    form {
+        padding-left: 1rem !important; /* Less side padding for form */
+        padding-right: 1rem !important;
+    }
+}

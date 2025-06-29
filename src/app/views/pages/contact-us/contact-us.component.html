@@ -1,0 +1,71 @@
+<div class="row m-0 d-flex justify-content-center contact-section-wrapper ">
+    <div class="col-12 py-sm-0 py-5 p back-img d-flex justify-content-center align-items-center">
+        <form
+            class="col-11 col-md-9 contact-form bg-white d-flex flex-column flex-sm-row px-3 px-sm-5 py-sm-5 py-3 rounded rounded-4 shadow-lg"
+            [formGroup]="contactForm">
+            <div class="col-12 col-sm-5 col-lg-4 form-left-col">
+                <h1 class="custom-h1 fw-bold py-3 text-center text-sm-start mb-4">Contact Us</h1>
+                <div class="pe-sm-4">
+                    <div class="mb-4">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control contact-input" id="name" value="Prakash Mandal"
+                            formControlName="name">
+                        <small
+                            *ngIf="contactForm.controls['name'].hasError('required') && contactForm.controls['name'].touched"
+                            class="text-danger">Name is required</small>
+                        <small
+                            *ngIf="contactForm.controls['name'].hasError('minlength') && contactForm.controls['name'].touched"
+                            class="text-danger">Name must be at least 3 characters long</small>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control contact-input" id="email" value="prakash@123gmail.com"
+                            formControlName="email">
+                        <small
+                            *ngIf="contactForm.controls['email'].hasError('required') && contactForm.controls['email'].touched"
+                            class="text-danger">Email is required</small>
+                        <small
+                            *ngIf="contactForm.controls['email'].hasError('email') && contactForm.controls['email'].touched"
+                            class="text-danger">Invalid Email format</small>
+                    </div>
+
+                    <div class="mb-4 mb-sm-0"> <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control contact-input" id="phone" value="+91 7061967497"
+                            formControlName="phone">
+                        <small
+                            *ngIf="contactForm.controls['phone'].hasError('required') && contactForm.controls['phone'].touched"
+                            class="text-danger">Phone number is required</small>
+                        <small
+                            *ngIf="contactForm.controls['phone'].hasError('pattern') && contactForm.controls['phone'].touched"
+                            class="text-danger">Invalid phone number format</small>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-sm-7 col-lg-8 d-flex flex-column justify-content-between">
+                <div class="text-area d-flex flex-column px-sm-4 col-12 pt-4 pt-sm-0"> <label for="message"
+                        class="form-label">Message</label>
+                    <textarea name="message" id="message" placeholder="Write message here"
+                        class="form-control custom-textarea" formControlName="message"></textarea>
+                    <small
+                        *ngIf="contactForm.controls['message'].hasError('required') && contactForm.controls['message'].touched"
+                        class="text-danger">Message is required</small>
+                    <small
+                        *ngIf="contactForm.controls['message'].hasError('minlength') && contactForm.controls['message'].touched"
+                        class="text-danger">Message must be at least 10 characters long</small>
+
+                    <button class="btn btn-lime mt-3 align-self-end col-8 col-sm-6 col-md-4 col-lg-3" type="submit"
+                        (click)="submitForm()" [disabled]="!contactForm.valid">Submit</button>
+                </div>
+                <hr class="col-12 my-4">
+                <div class="col-12 d-flex gap-4 justify-content-center justify-content-sm-start mt-3"> <a href="#"
+                        class="social-icon-contact"><i class="fs-4 fa-brands fa-facebook"></i></a> <a href="#"
+                        class="social-icon-contact"><i class="fs-4 fa-brands fa-twitter"></i></a>
+                    <a href="#" class="social-icon-contact"><i class="fs-4 fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="social-icon-contact"><i class="fs-4 fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

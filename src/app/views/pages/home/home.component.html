@@ -1,0 +1,87 @@
+<div class="container-fluid p-0">
+    <div class="row m-0 main-section">
+        <div class="col-12 col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-center order-2 order-lg-1">
+            <h1 class="custom-h1 fw-bold py-2 custom-h1-color">Fresh fruits make life sweet and healthy!</h1>
+            <p>Eating fruits is one of the simplest ways to boost your health. Packed with vitamins, minerals, and
+                antioxidants, fruits can help protect against diseases and give you a natural energy boost. So, grab an
+                apple, banana, or your favorite fruit and enjoy the delicious benefits!</p>
+            <div class="d-flex flex-wrap gap-3 mt-3">
+                <a href="#" class="btn btn-custom px-5 py-2 fw-bold">Get Fruits</a>
+                <a href="#" class="btn btn-custom px-5 py-2 fw-bold btn-custom-light">Know More</a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center p-0 order-1 order-lg-2">
+            <img src="./assets/images/home-page/landing-page.png" alt="Fresh Fruits" class="img-fluid section-image">
+        </div>
+    </div>
+
+    <div class="row m-0 main-section">
+        <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center p-0">
+            <img src="./assets/images/home-page/delicious-mango-still-life.jpg" alt="Delicious Mango"
+                class="img-fluid section-image">
+        </div>
+        <div class="col-12 col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-center">
+            <h2 class="fw-bold py-2">Mangoes in summer are a taste of paradise - sweet, juicy, and refreshing</h2>
+            <p>Eating fresh fruits like mangoes, berries, and citrus can boost your health and energy levels. Fruits are
+                packed with essential vitamins, minerals, and antioxidants that help protect against diseases and
+                support overall well-being.</p>
+            <div class="d-flex flex-wrap gap-5 mt-4 justify-content-center justify-content-md-start">
+                <div class="statistic-item">
+                    <h1 class="statistic-value">100+</h1>
+                    <h4 class="statistic-label text-black">Global Franchise</h4>
+                </div>
+                <div class="statistic-item">
+                    <h1 class="statistic-value">100%</h1>
+                    <h4 class="statistic-label text-black">Organic Product</h4>
+                </div>
+                <div class="statistic-item">
+                    <h1 class="statistic-value">95%</h1>
+                    <h4 class="statistic-label text-black">Happy Customer</h4>
+                </div>
+                <div class="statistic-item">
+                    <h1 class="statistic-value">10M+</h1>
+                    <h4 class="statistic-label text-black">Monthly Sales</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-0 ">
+        <div class="col-12 col-lg-6 p-4 p-md-5 d-flex align-items-center order-2 order-lg-1">
+            <h2>Fruit Basket aims to provide fresh, high-quality fruits to customers, making it easy for them to order
+                and enjoy their favorite fruits from the comfort of their own homes.</h2>
+        </div>
+        <div class="col-12 col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-center order-1 order-lg-2">
+            <h4 class="fw-bold bg-lime-heading py-2 px-3 d-inline-block mb-4">To Eat fresh Fruit</h4>
+            <ol class="list-unstyled how-to-list">
+                <li>
+                    <h3 class="fw-bold mb-1">Browse & Select</h3>
+                    <p>Choose your favorite fruits from our collection.</p>
+                </li>
+                <li>
+                    <h3 class="fw-bold mb-1">Add to Cart & Checkout</h3>
+                    <p>Add selected fruits to cart and proceed to secure checkout.</p>
+                </li>
+                <li>
+                    <h3 class="fw-bold mb-1">Delivery</h3>
+                    <p>Receive fresh fruits at your doorstep.</p>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="row m-0 py-5 justify-content-center g-4 fruit-cards-section">
+        <div *ngFor="let fruit of fruitArray" class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+            <div class="card fruit-card">
+                <img [src]="fruit.path" alt="Apple" class="card-img-top fruit-card-img">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{fruit.name}}</h5>
+                    <h4 class="fw-bold card-price">&#8377;{{fruit.price}}</h4>
+                    <p class="card-text">{{fruit.description}}</p>
+                    <a href="#" class="btn btn-custom fw-bold px-4">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

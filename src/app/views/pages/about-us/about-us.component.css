@@ -1,0 +1,419 @@
+/* Overall page background and global font */
+.main-page-wrapper {
+    background: radial-gradient(circle at center, #1a2f27 0%, #0a0e0c 70%, #000000 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #333; /* Default text color for light sections */
+}
+
+/* --- Hero Section (formerly .first-container) --- */
+.about-hero-section {
+    background-image: url("../../../../assets/images/background/about-2.jpg"); /* Your specified image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect */
+    width: 100%; /* Use 100% width instead of 100vw for better responsiveness within parent */
+    min-height: 60vh; /* Adjust height based on content, using vh for responsiveness */
+    height: 30rem; /* Fallback height if min-height is not enough */
+    position: relative;
+    overflow: hidden;
+    color: white; /* Ensure text on hero is white */
+    display: flex; /* Inherited from HTML, good */
+    flex-direction: column; /* Inherited from HTML, good */
+    justify-content: center; /* Inherited from HTML, good */
+    align-items: center; /* Inherited from HTML, good */
+    text-align: center; /* Inherited from HTML, good */
+}
+
+/* Dark overlay for readability over hero background image */
+.about-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Darker overlay */
+    z-index: 1;
+}
+
+.about-hero-section > * { /* Ensures content is above overlay */
+    position: relative;
+    z-index: 2;
+}
+
+/* MODIFICATION FOR HERO TEXT CENTERING */
+.about-hero-section .container { /* Targeting the container holding the text */
+    max-width: 900px; /* Limit the container width for better readability on very wide screens */
+    margin: 0 auto; /* Center the container itself */
+}
+
+.about-hero-section h1 { /* Your h1 from first-container */
+    font-size: 4.2rem; /* Slightly adjusted for impact */
+    color: #FFFFFF; /* Changed to white for better contrast with dark overlay */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Adds depth */
+    /* Removed max-width here as the container handles it */
+}
+
+.about-hero-section p { /* Your p from first-container */
+    font-size: 1.6rem; /* Slightly adjusted */
+    color: rgba(255, 255, 255, 0.9); /* Softer white */
+    /* Removed max-width here as the container handles it */
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.about-us-btn { /* Your button from first-container */
+    background-color: #4CAF50; /* Primary green accent */
+    border: 2px solid #4CAF50;
+    color: white;
+    padding: 0.9rem 2.5rem;
+    border-radius: 50px !important; /* Ensure rounded-5 works */
+    font-weight: bold;
+    font-size: 1.15rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+    text-decoration: none; /* In case it's an <a> tag */
+    display: inline-block; /* Ensure padding works */
+}
+
+.about-us-btn:hover {
+    background-color: #43A047; /* Darker green on hover */
+    border-color: #43A047;
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
+}
+
+
+/* --- General Section Styling (reused) --- */
+/* This ensures alternating backgrounds for visual rhythm */
+section {
+    padding: 5rem 0; /* Consistent vertical padding */
+}
+.story-section, .values-section { /* White background sections */
+    background-color: #ffffff;
+}
+.mission-vision-section { /* Light grey background section */
+    background-color: #f0f2f5;
+}
+
+.section-heading {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 2rem; /* Adjusted for better spacing with text */
+    position: relative;
+    display: inline-block; /* For the underline pseudo-element */
+    width: 100%; /* Ensure it spans if not text-centered */
+}
+/* Underline effect for headings */
+.section-heading::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #4CAF50;
+    margin: 0.75rem auto 0; /* Centered by default */
+    border-radius: 2px;
+}
+/* Adjust underline for left-aligned headings (like in story-content-container) */
+.story-content-container .section-heading::after {
+    margin-left: 0;
+}
+
+.section-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.section-text-alt { /* For mission/vision boxes */
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+
+/* --- Our Story Section (formerly .second-container) --- */
+.story-section {
+    background-color: #ffffff; /* Explicitly set to white */
+    padding: 4rem 0; /* Consistent padding */
+    /* flex-direction controlled by Bootstrap's row */
+}
+
+/* Image container for the "Our Journey" section */
+.img-container {
+    background-image: url("../../../../assets/images/background/my-journey.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 550px; /* INCREASED IMAGE HEIGHT */
+    border-radius: 8px; /* Slightly rounded corners for the image div */
+    overflow: hidden; /* Important for border-radius to show */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Soft shadow */
+    transform: rotate(-1deg); /* Subtle tilt */
+    transition: transform 0.3s ease;
+}
+.img-container:hover {
+    transform: rotate(0deg) scale(1.01); /* Straighten and slightly enlarge on hover */
+}
+
+
+.story-content-container { /* Styling for the text content next to the image */
+    padding-left: 3rem; /* Spacing from the image */
+    padding-right: 1rem; /* Padding on the right */
+}
+
+/* Milestone list styling */
+.milestone-list {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+}
+
+.milestone-list li {
+    position: relative;
+    padding-left: 1.5rem; /* Space for custom bullet */
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-size: 1.05rem;
+}
+
+.milestone-list li::before {
+    content: "\f058"; /* Font Awesome check-circle icon */
+    font-family: "Font Awesome 5 Free"; /* Ensure Font Awesome is loaded */
+    font-weight: 900; /* For solid icon */
+    color: #4CAF50; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+/* --- Mission & Vision Section Specific (reused) --- */
+.mission-box, .vision-box {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem; /* Adjusted padding */
+    border-radius: 8px; /* Consistent border-radius */
+}
+
+.mission-box:hover, .vision-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    border-color: #4CAF50;
+}
+
+.section-icon {
+    font-size: 3.5rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+
+.section-subheading {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+}
+
+
+/* --- Values Section Specific (reused) --- */
+.value-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem; /* Adjusted padding */
+    border-radius: 8px; /* Consistent border-radius */
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: #4CAF50;
+}
+
+.section-icon-sm {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    margin-bottom: 0.8rem;
+}
+
+.value-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.value-text {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* --- Call to Action Section --- */
+.cta-section {
+    background-color: #212529; /* Dark background for emphasis */
+    /* background-image: url('../../../../assets/images/background/ctr-section.png');  */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 0;
+    padding: 5rem 0; /* Consistent padding */
+}
+.cta-section::before { /* Dark overlay */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Darker overlay than hero */
+    z-index: -1;
+}
+
+.cta-section .section-heading {
+    color: white; /* Ensure heading is white */
+    margin-bottom: 1.5rem; /* Adjusted spacing */
+}
+.cta-section .section-heading::after {
+    background-color: white; /* White underline for dark background */
+}
+
+.cta-section .lead {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem; /* Adjusted spacing */
+}
+
+.cta-btn {
+    background-color: #4CAF50;
+    border: 2px solid #4CAF50;
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 50px !important;
+    font-weight: bold;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.cta-btn:hover {
+    background-color: #43A047;
+    border-color: #43A047;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 991.98px) { /* Lg and down */
+    .about-hero-section {
+        min-height: 50vh;
+        height: auto; /* Allow height to adjust */
+    }
+    .about-hero-section h1 {
+        font-size: 3rem;
+    }
+    .about-hero-section p {
+        font-size: 1.3rem;
+    }
+    .about-us-btn {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+    }
+
+    .section-heading {
+        font-size: 2.2rem;
+    }
+    .section-text {
+        font-size: 1rem;
+    }
+    .mission-box, .vision-box {
+        min-height: 220px;
+        padding: 1.5rem;
+    }
+    .value-card {
+        min-height: 180px;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 767.98px) { /* Md and down */
+    .about-hero-section h1 {
+        font-size: 2.5rem;
+        padding: 0 1rem; /* Added padding for smaller screens */
+    }
+    .about-hero-section p {
+        font-size: 1.1rem;
+        padding: 0 1rem; /* Added padding for smaller screens */
+    }
+    .story-section .row {
+        flex-direction: column; /* Stack columns on small screens */
+    }
+    .img-container {
+        min-height: 350px; /* Adjusted height for mobile for the larger look */
+        margin-bottom: 2rem; /* Space between image and text */
+        transform: rotate(0deg); /* Remove tilt on mobile */
+    }
+    .story-content-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .section-heading {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    .section-heading::after {
+        width: 40px;
+        height: 3px;
+        margin-top: 0.5rem;
+    }
+    .milestone-list li {
+        font-size: 0.95rem;
+    }
+    .mission-box, .vision-box {
+        min-height: auto; /* Allow height to adjust on small screens */
+        margin-bottom: 1.5rem; /* Space between boxes when stacked */
+    }
+    .value-card {
+        min-height: auto;
+        margin-bottom: 1.5rem;
+    }
+    .cta-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 575.98px) { /* Sm and down (very small mobile) */
+    .about-hero-section h1 {
+        font-size: 2rem;
+    }
+    .about-hero-section p {
+        font-size: 1rem;
+    }
+    .about-us-btn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.5rem;
+    }
+    .section-heading {
+        font-size: 1.6rem;
+    }
+    .section-text {
+        font-size: 0.95rem;
+    }
+}

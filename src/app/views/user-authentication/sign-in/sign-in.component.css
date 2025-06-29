@@ -1,0 +1,248 @@
+/* Overall page background (assuming this is where the gradient goes) */
+body {
+    background: radial-gradient(circle at center, #1a2f27 0%, #0a0e0c 70%, #000000 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0; /* Remove default body margin */
+}
+
+/* Main container for centering the inner form */
+.main-container {
+    min-height: 100vh; /* Ensure it covers full viewport height */
+    width: 100%;
+    /* background-image: url("../../../../assets/images/background/log-in-background.jpg");
+    background-size: cover; */
+    /* justify-content and align-items moved to body for global centering */
+}
+
+/* Inner container for the login form */
+.inner-container {
+    background-color: #ffffff; /* Explicitly white */
+    padding: 2.5rem; /* More generous padding */
+    border-radius: 0.75rem; /* Rounded corners */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow for pop-out effect */
+    position: relative; /* For absolute positioning of back button */
+}
+
+/* Back button positioning and style */
+.back-button {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    color: #6c757d; /* Muted color */
+    transition: color 0.3s ease;
+}
+
+.back-button:hover {
+    color: #4CAF50; /* Green on hover */
+}
+
+/* Company logo styling */
+.login-logo {
+    max-width: 150px; /* Constrain logo size */
+    height: auto;
+    display: block; /* Ensures it behaves as a block element for margin */
+    margin-bottom: 2rem; /* Space below logo */
+    margin-top: 0; /* Resetting default img margin if any */
+}
+
+/* Login form title */
+.login-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 2rem; /* Adjusted for login context */
+}
+
+/* Input field base styling */
+.form-input-custom {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease-in-out;
+    box-shadow: none !important;
+    background-color: #f8f9fa;
+    width: 100%; /* Ensure full width */
+}
+
+.form-input-custom:focus {
+    border-color: #4CAF50; /* Green on focus */
+    box-shadow: 0 0 0 0.25rem rgba(76, 175, 80, 0.25) !important;
+    background-color: #fff;
+}
+
+/* Label styling (already good with Bootstrap fs-6 fw-bold) */
+.form-label {
+    color: #333;
+    margin-bottom: 0.5rem; /* Space below label */
+}
+
+/* Forgot password link */
+.forgot-password-link {
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+    color: #4CAF50;
+    text-decoration: underline !important;
+}
+
+/* Login button styling */
+.login-btn {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: white;
+    padding: 0.85rem 1.5rem; /* Slightly more vertical padding */
+    border-radius: 0.5rem; /* Uniformly rounded */
+    font-weight: bold;
+    font-size: 1.1rem; /* Slightly larger font */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    width: 100%; /* Make button full width */
+}
+
+.login-btn:hover {
+    background-color: #43A047;
+    border-color: #43A047;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Social login section */
+.social-login-section {
+    margin-top: 2rem; /* Space above social login */
+    border-top: 1px solid #eee; /* Separator line */
+    padding-top: 1.5rem;
+}
+
+.signup-link {
+    color: #6c757d;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.signup-link:hover {
+    color: #4CAF50;
+    text-decoration: underline !important;
+}
+
+.social-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.social-icons {
+    margin-top: 1rem; /* Space between text and icons */
+}
+
+.social-icon-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #f0f2f5; /* Light grey background */
+    color: #333; /* Dark icon color */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.social-icon-circle:hover {
+    background-color: #e2e6ea; /* Darker grey on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific colors for social icons if desired */
+/*
+.fa-google { color: #DB4437; }
+.fa-github { color: #333; }
+.fa-facebook { color: #1877F2; }
+*/
+
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) { /* Large devices (desktops) and down */
+    .inner-container {
+        padding: 2rem;
+    }
+    .login-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 767.98px) { /* Medium devices (tablets) and down */
+    .inner-container {
+        padding: 1.5rem;
+    }
+    .login-logo {
+        max-width: 120px;
+        margin-bottom: 1.5rem;
+    }
+    .login-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    .login-btn {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+    .social-login-section {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+    }
+}
+
+@media (max-width: 575.98px) { /* Small devices (landscape phones) and down */
+    .inner-container {
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+    .back-button {
+        top: 1rem;
+        left: 1rem;
+    }
+    .login-logo {
+        max-width: 100px;
+        margin-bottom: 1rem;
+    }
+    .login-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .form-label {
+        font-size: 0.9rem;
+    }
+    .form-input-custom {
+        padding: 0.6rem 0.8rem;
+    }
+    .form-text {
+        font-size: 0.75rem;
+    }
+    .login-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    .social-text {
+        font-size: 0.85rem;
+    }
+    .social-icon-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+}

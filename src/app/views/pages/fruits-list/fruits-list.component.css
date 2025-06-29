@@ -1,0 +1,178 @@
+.fruit-cards-section {
+    background-color: #f8f8f8;
+}
+
+.fruit-card {
+    width: 20rem;
+    height: auto;
+    border: none;
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.custom-card-shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-card-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.fruit-card-img {
+    height: 15rem;
+    width: 15rem;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-price {
+    font-size: 1.8rem;
+    color: limegreen;
+    margin-bottom: 0.8rem;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.quantity-selector-container {
+    display: flex;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.quantity-btn {
+    background-color: rgb(19, 224, 84);
+    color: white;
+    border: none;
+    padding: 0 12px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-btn:hover {
+    background-color: rgb(16, 180, 67);
+}
+
+.quantity-btn:active {
+    background-color: rgb(12, 140, 52);
+    transform: translateY(1px);
+}
+
+.plus {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.minus {
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.quantity-input {
+    text-align: center;
+    width: 2.5rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    background-color: #ffffff;
+    padding: 0.5rem 0;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+    outline: none;
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.add-cart-button {
+    background-color: limegreen;
+    color: black !important;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+}
+
+.add-cart-button:hover {
+    background-color: rgb(32, 230, 32);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    color: black !important;
+}
+
+@media (max-width: 991.98px) {
+    .fruit-card {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .fruit-card {
+        max-width: 280px;
+        padding: 1rem;
+    }
+    .fruit-card-img {
+        height: 12rem;
+        width: 12rem;
+    }
+    .card-title {
+        font-size: 1.3rem;
+    }
+    .card-price {
+        font-size: 1.6rem;
+    }
+    .card-text {
+        font-size: 0.9rem;
+    }
+    .quantity-input {
+        width: 2rem;
+    }
+    .quantity-btn {
+        padding: 0 8px;
+        font-size: 1rem;
+    }
+    .add-cart-button {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .fruit-cards-section .col-12 {
+        max-width: 100%;
+    }
+    .fruit-card {
+        max-width: 250px;
+    }
+}

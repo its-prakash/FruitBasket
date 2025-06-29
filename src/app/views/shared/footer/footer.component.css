@@ -1,0 +1,177 @@
+/* Footer specific styles */
+.footer {
+    color: #f8f8f8;
+    /* Light text color */
+    background: linear-gradient(to right, #1e093c, #3f1107);
+    /* Dark gradient background */
+    padding-top: 3rem;
+    /* Increase top padding for content */
+    padding-bottom: 3rem;
+    /* Increase bottom padding for content */
+}
+
+.footer h5 {
+    /* Headings are already bold via Bootstrap fw-bold */
+    color: #ffffff;
+    /* White color for headings */
+    font-size: 1.6rem;
+    /* Increased font size for h5 headings (e.g., About Us, Quick Links, Contact Us) */
+}
+
+.footer-text {
+    font-size: 1.1rem;
+    /* Increased font size for the 'About Us' paragraph */
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    /* Slightly transparent white for paragraph text */
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.7);
+    /* Consistent link color */
+    text-decoration: none;
+    /* Remove underline */
+    transition: color 0.3s ease;
+    /* Smooth transition on hover */
+    font-size: 1.05rem;
+    /* Increased font size for Quick Links */
+}
+
+.footer-link:hover {
+    color: #ffffff;
+    /* White on hover */
+    text-decoration: underline;
+    /* Underline on hover */
+}
+
+/* Social Icons */
+.footer-social-icon {
+    color: #f8f8f8;
+    /* White icon color */
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    /* Ensure icons are treated as flex items */
+    align-items: center;
+    /* Vertically align icon */
+    justify-content: center;
+    /* Horizontally align icon */
+    width: 45px;
+    /* Slightly increase size for better click area/visual */
+    height: 45px;
+    /* Slightly increase size for better click area/visual */
+    border-radius: 50%;
+    /* Make them circular if you want a background circle */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Subtle background behind icons */
+}
+
+.footer-social-icon:hover {
+    color: limegreen;
+    /* Lime green on hover for icons */
+    transform: translateY(-3px);
+    /* Subtle lift effect */
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Slightly more opaque background */
+}
+
+.footer-social-icon .fs-2 {
+    /* Target the Font Awesome icon specifically */
+    font-size: 1.8rem !important;
+    /* Increased font size for social icons */
+    line-height: 1;
+    /* Helps with vertical alignment within circle */
+}
+
+
+/* Contact List Icons and Text */
+.contact-list li {
+    display: flex;
+    /* Use flexbox for icon and text alignment */
+    align-items: flex-start;
+    /* Align items to the start for multi-line address */
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.05rem;
+    /* Increased font size for contact list text */
+}
+
+.contact-list li i {
+    flex-shrink: 0;
+    /* Prevent icon from shrinking */
+    margin-top: 4px;
+    /* Adjust if icon isn't perfectly aligned with text baseline */
+    font-size: 1.1rem;
+    /* Increased font size for contact icons */
+}
+
+
+/* Copyright Section */
+.copyright-section {
+    min-height: 2.5rem;
+    /* Use min-height for flexibility */
+    background-color: rgb(44, 13, 202);
+    /* Original background color */
+    color: white;
+    display: flex;
+    /* Use flexbox to center content vertically */
+    align-items: center;
+    /* Vertically center content */
+    justify-content: center;
+    /* Horizontally center content */
+    padding: 10px 0;
+    /* Add padding to ensure content isn't squished */
+}
+
+.copyright-text {
+    font-size: 0.95rem;
+    /* Increased font size for copyright text */
+    color: rgba(255, 255, 255, 0.8);
+    /* Slightly transparent white */
+    margin-bottom: 0;
+    /* Remove default paragraph bottom margin */
+}
+
+/* Media queries for specific adjustments (Bootstrap handles most) */
+@media (max-width: 767.98px) {
+
+    /* Small devices (sm) breakpoint and below */
+    .footer .container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .footer-heading {
+        /* This class doesn't exist in your HTML, consider if it's needed */
+        margin-top: 1.5rem;
+        /* Add space above headings when stacked */
+        margin-bottom: 1rem;
+        /* Adjust space below headings */
+    }
+
+    /* Ensure no extra margin below last column on mobile */
+    .col-12.mb-4.mb-md-0:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    /* Adjustments for mobile font sizes if you want them different from desktop */
+    .footer h5 {
+        font-size: 1.4rem;
+        /* Slightly smaller heading on mobile */
+    }
+
+    .footer-text,
+    .footer-link,
+    .contact-list li {
+        font-size: 1rem;
+        /* Slightly smaller body text on mobile */
+    }
+
+    .footer-social-icon .fs-2 {
+        font-size: 1.5rem !important;
+        /* Adjust social icon size for mobile */
+    }
+
+    .copyright-text {
+        font-size: 0.8rem;
+        /* Smaller copyright on mobile */
+    }
+}
