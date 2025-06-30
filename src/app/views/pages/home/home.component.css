@@ -8,7 +8,7 @@
 
 /* --- Hero Section (from About Us, for reference) --- */
 .about-hero-section {
-    background-image: url("../../../../assets/images/background/about-2.jpg");
+    /* background-image: url("../../../../assets/images/background/about-2.jpg"); */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

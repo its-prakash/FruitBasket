@@ -1,9 +1,10 @@
 .main-body {
     /* background: radial-gradient(circle at center, #1a2f27 0%, #0a0e0c 70%, #000000 100%); */
-    background-image: url("../../../../assets/images/contact/many-fruits.jpg");
+    background-image: url("../../../../assets/images/home-page/leafs-background.png");
     min-height: 100vh; /* Ensure it takes full viewport height */
     display: flex; /* Added flex for centering form vertically if content is short */
     align-items: center; /* Center form vertically */
+    background-position: center;
 }
 
 form{
