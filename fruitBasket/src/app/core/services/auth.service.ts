@@ -39,7 +39,8 @@ export class AuthService {
 
   isLoggedIn = new BehaviorSubject<boolean>(false);
 
-  baseUrl = "http://localhost:3000/api/users"
+  // baseUrl = "http://localhost:3000/api/users"
+  baseUrl = "https://fruitbasket-n8by.onrender.com/api/users"
 
   constructor() {
     this.isAuthenticated()

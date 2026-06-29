@@ -9,7 +9,8 @@ export class OrderService {
 
   private http = inject(HttpClient)
 
-  baseUrl = "http://localhost:3000/api/order"
+  // baseUrl = "http://localhost:3000/api/order"
+  baseUrl = "https://fruitbasket-n8by.onrender.com/api/order"
 
   orderConfirm(totalAmount: number, paymentStatus: string , paymentMethod : string): Observable<any> {
 
