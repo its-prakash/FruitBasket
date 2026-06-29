@@ -56,8 +56,12 @@ export class AuthService {
     }).pipe(
       tap(res => {
 
-        if (res && res.user && res.user._id) {
-          localStorage.setItem("authToken", res.user._id);
+        console.log('Login Response:', res);
+
+        const userId = res?.user?._id 
+
+        if (userId) {
+          localStorage.setItem("authToken", userId);
           this.isLoggedIn.next(true);
         }
       })
@@ -102,12 +106,12 @@ export class AuthService {
     return this.http.get<any>(`${this.baseUrl}/getUserAddress`)
   }
 
-  deleteAddress(addressId : string): Observable<any>{
+  deleteAddress(addressId: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/removeAddress/${addressId}`);
   }
 
-  contactMessage(rawData : any) : Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/getContactMessage`,rawData)
+  contactMessage(rawData: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/getContactMessage`, rawData)
   }
 
 
