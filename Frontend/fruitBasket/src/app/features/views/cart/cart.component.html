@@ -1,0 +1,149 @@
+<!-- Outer wrapper setting up a responsive 2-column layout grid for Desktop -->
+<div class="w-full max-w-6xl mx-auto p-4 sm:p-6 md:p-8 bg-gray-50/50">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+
+    <!-- LEFT SIDE: Cart Items List Container (Takes up 2 columns on desktop) -->
+    <div class="lg:col-span-2 space-y-3 md:h-[35rem] h-fit overflow-y-auto">
+
+      @for (item of cartData; track item._id || $index) {
+      <!-- Dynamic Fruit Card Container Row -->
+      <div
+        class="bg-white border border-emerald-100 rounded-2xl p-4 flex items-center justify-between shadow-[0_4px_20px_rgba(16,185,129,0.03)] hover:shadow-[0_4px_16px_rgba(16,185,129,0.06)] transition-all duration-200">
+
+        <!-- Left Item Details Group -->
+        <div class="flex items-center space-x-4">
+          <!-- Dynamic Thumbnail Frame -->
+          <div
+            class="w-16 h-16 sm:w-20 sm:h-20 bg-emerald-50/40 rounded-xl flex items-center justify-center p-2 flex-shrink-0">
+            <img [src]="item.productId.image" [alt]="item.productId.name"
+              class="max-w-full max-h-full object-contain rounded-lg">
+          </div>
+
+          <!-- Product Typography Layout Structure -->
+          <div class="flex flex-col space-y-1">
+            <p class="text-gray-900 font-bold text-[15px] sm:text-base tracking-tight leading-tight">
+              {{ item.productId.name }}
+            </p>
+
+            <!-- Dynamic Packaging Units String Label -->
+            <p class="text-gray-400 font-medium text-xs sm:text-sm">
+              1 {{ item.productId.unit }}
+            </p>
+
+            <!-- Metadata Badges Container Row -->
+            <div class="flex flex-wrap gap-1.5 items-center pt-0.5">
+              <!-- Dynamic Category Tag Info Node -->
+              <span
+                class="bg-emerald-50 text-emerald-700 font-semibold text-[10px] sm:text-xs px-2 py-0.5 rounded-md border border-emerald-100/50">
+                {{ item.productId.category }}
+              </span>
+              <!-- Dynamic Origin Tag Info Node -->
+              <span
+                class="bg-gray-50 text-gray-500 font-medium text-[10px] sm:text-xs px-2 py-0.5 rounded-md border border-gray-200/60 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                </svg>
+                {{ item.productId.origin }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Item Actions/Price Group Alignment Block -->
+        <div
+          class="flex items-center justify-between border border-emerald-100 rounded-lg bg-emerald-50/20 w-24 sm:w-28 h-9 sm:h-10 px-2">
+
+          <button type="button" [disabled]="item.quantity <= 1"
+            (click)="changeQuantity(item.productId._id, item.quantity, 'minus')"
+            class="text-emerald-600 hover:text-emerald-800 transition-colors font-medium text-lg px-1">
+            -
+          </button>
+
+          <span class="text-emerald-700 font-bold text-sm sm:text-base">{{ item.quantity }}</span>
+
+          <button type="button" (click)="changeQuantity(item.productId._id, item.quantity, 'plus')"
+            class="text-emerald-600 hover:text-emerald-800 transition-colors font-medium text-lg px-1">
+            +
+          </button>
+
+        </div>
+
+        <!-- Dynamic Pricing Layout Box Matrix calculations -->
+        <div class="flex items-center space-x-3 sm:space-x-5 min-w-[75px] sm:min-w-[90px] justify-end">
+          <div class="text-right flex flex-col justify-center">
+            <span class="text-gray-900 font-bold text-[15px] sm:text-lg tracking-tight">
+              {{ item.productId.price * item.quantity | currency:'INR':'symbol':'1.0-0' }}
+            </span>
+          </div>
+
+          <!-- Trash Mutation Action Hook Button Element -->
+          <button type="button" (click)="removeFromCart(item.productId._id)"
+            class="text-gray-400 hover:text-red-500 p-2 border border-gray-100 rounded-xl hover:bg-red-50 transition-all duration-200 group flex-shrink-0">
+            <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"
+              class="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-105 transition-transform">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      }
+
+    </div>
+
+    <!-- RIGHT SIDE: Order Summary & Checkout panel Container -->
+    <div
+      class="bg-white border border-emerald-100 rounded-2xl p-5 shadow-[0_4px_24px_rgba(16,185,129,0.04)] sticky top-6">
+      <p class="text-gray-900 font-bold text-lg tracking-tight mb-4 border-b border-gray-100 pb-3">Order Summary</p>
+
+      <!-- Summary Line Items List Stack -->
+      <div class="space-y-2.5 mb-4">
+        <div class="flex justify-between text-gray-500 font-medium text-sm">
+          <span>Bag Total</span>
+          <span class="text-gray-800 font-semibold">{{bagTotal | currency:'INR':'symbol':'1.0-0'}}</span>
+        </div>
+        <div class="flex justify-between text-gray-500 font-medium text-sm">
+          <span>Product Discount</span>
+          <span class="text-emerald-600 font-semibold">{{discount | currency:'INR':'symbol':'1.0-0'}}</span>
+        </div>
+        <div class="flex justify-between text-gray-500 font-medium text-sm">
+          <span>Delivery Charges</span>
+          <div class="flex items-center space-x-1.5">
+            <span class="line-through text-gray-400">{{deliveryCharge | currency:'INR':'symbol':'1.0-0'}}</span>
+            <span class="text-emerald-600 font-semibold">FREE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Promo Code Banner Alert Block Info Section -->
+      <div class="bg-emerald-50/40 border border-emerald-100/50 rounded-xl p-3 mb-5 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="text-base">🎉</span>
+          <p class="text-emerald-800 font-semibold text-xs tracking-tight">Total Saved {{discount |
+            currency:'INR':'symbol':'1.0-0'}} on this order</p>
+        </div>
+      </div>
+
+      <!-- Grand Financial Matrix Value Indicators -->
+      <div class="flex justify-between items-baseline mb-6 pt-3 border-t border-dashed border-gray-200">
+        <span class="text-gray-900 font-bold text-base">Total Payable</span>
+        <span class="text-emerald-700 font-extrabold text-2xl tracking-tight">{{total |
+          currency:'INR':'symbol':'1.0-0'}}</span>
+      </div>
+
+      <!-- Call To Action Checkout Buttons Row Stack Frame -->
+      <button type="button" (click)="onSubmit()"
+        class="w-full bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-sm sm:text-base py-3.5 px-4 rounded-xl shadow-[0_4px_14px_rgba(16,185,129,0.25)] hover:shadow-[0_6px_20px_rgba(16,185,129,0.3)] transition-all duration-200 flex items-center justify-center space-x-2 group">
+        <span>Proceed to Checkout</span>
+        <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
+          class="w-4 h-4 sm:w-5 h-5 group-hover:translate-x-0.5 transition-transform">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7M21 12H3" />
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</div>

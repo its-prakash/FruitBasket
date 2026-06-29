@@ -1,0 +1,101 @@
+<div class="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat py-6 background-image">
+
+    <!-- Use regular submit listener to capture enter keys properly -->
+    <form [formGroup]="contactForm" (ngSubmit)="submitForm()"
+        class="w-11/12 md:w-9/12 max-w-3xl bg-white rounded-2xl shadow-2xl flex flex-col sm:flex-row p-6 sm:p-10">
+
+        <!-- Left Column -->
+        <div class="w-full sm:w-5/12 lg:w-4/12 pr-0 sm:pr-6 mb-6 sm:mb-0">
+            <p class="text-3xl font-bold py-3 text-center sm:text-left mb-6">Contact Us</p>
+
+            <!-- Name Field -->
+            <div class="mb-5">
+                <label for="name" class="block text-gray-700 font-medium mb-1">Name</label>
+                <input type="text" id="name" formControlName="name"
+                    class="w-full border-0 border-b-2 border-black focus:border-lime-600 outline-none px-0 py-2" />
+                
+                @if (contactForm.get('name')?.touched) {
+                    @if (contactForm.get('name')?.hasError('required')) {
+                        <small class="text-red-600 block mt-1">Name is required</small>
+                    }
+                    @if (contactForm.get('name')?.hasError('minlength')) {
+                        <small class="text-red-600 block mt-1">Name must be at least 3 characters long</small>
+                    }
+                }
+            </div>
+
+            <!-- Email Field -->
+            <div class="mb-5">
+                <label for="email" class="block text-gray-700 font-medium mb-1">Email</label>
+                <input type="email" id="email" formControlName="email"
+                    class="w-full border-0 border-b-2 border-black focus:border-lime-600 outline-none px-0 py-2" />
+                
+                @if (contactForm.get('email')?.touched) {
+                    @if (contactForm.get('email')?.hasError('required')) {
+                        <small class="text-red-600 block mt-1">Email is required</small>
+                    }
+                    @if (contactForm.get('email')?.hasError('email')) {
+                        <small class="text-red-600 block mt-1">Invalid Email format</small>
+                    }
+                }
+            </div>
+
+            <!-- Phone Field -->
+            <div class="mb-5 sm:mb-0">
+                <label for="phone" class="block text-gray-700 font-medium mb-1">Phone</label>
+                <input type="tel" id="phone" formControlName="phone"
+                    class="w-full border-0 border-b-2 border-black focus:border-lime-600 outline-none px-0 py-2" />
+                
+                @if (contactForm.get('phone')?.touched) {
+                    @if (contactForm.get('phone')?.hasError('required')) {
+                        <small class="text-red-600 block mt-1">Phone number is required</small>
+                    }
+                    @if (contactForm.get('phone')?.hasError('pattern')) {
+                        <small class="text-red-600 block mt-1">Phone number must be exactly 10 digits</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="w-full sm:w-7/12 lg:w-8/12 flex flex-col justify-between">
+            <div class="w-full flex flex-col sm:pl-6 pt-6 sm:pt-0 border-t-4 sm:border-t-0 sm:border-l-4 border-black">
+                <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                <textarea id="message" formControlName="message" placeholder="Write message here"
+                    class="w-full h-48 sm:h-52 border border-gray-300 rounded-md p-3 resize-y focus:border-lime-600 outline-none"></textarea>
+
+                @if (contactForm.get('message')?.touched) {
+                    @if (contactForm.get('message')?.hasError('required')) {
+                        <small class="text-red-600 block mt-1">Message is required</small>
+                    }
+                    @if (contactForm.get('message')?.hasError('minlength')) {
+                        <small class="text-red-600 block mt-1">Message must be at least 10 characters long</small>
+                    }
+                }
+
+                <button type="submit" [disabled]="contactForm.invalid"
+                    class="mt-4 sm:mt-6 self-end sm:self-start bg-lime-300 text-black font-semibold rounded-xl shadow-md border-2 border-lime-500 hover:bg-lime-500 transition px-6 py-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Submit
+                </button>
+            </div>
+
+            <hr class="my-6 border-gray-300">
+
+            <!-- Social Icons Section -->
+            <div class="flex gap-5 justify-center sm:justify-start mt-4">
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-black/10 hover:bg-black/20 transition text-black hover:text-blue-600">
+                    <i class="fa-brands fa-facebook text-xl"></i>
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-black/10 hover:bg-black/20 transition text-black hover:text-sky-500">
+                    <i class="fa-brands fa-twitter text-xl"></i>
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-black/10 hover:bg-black/20 transition text-black hover:text-blue-700">
+                    <i class="fa-brands fa-linkedin text-xl"></i>
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-black/10 hover:bg-black/20 transition text-black hover:text-purple-600">
+                    <i class="fa-brands fa-github text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,394 @@
+<mat-stepper #stepper class="pt-4" [linear]="isLinear">
+
+    <mat-step label="Shipping" [completed]="selectedAddressId !== null" [editable]="false">
+
+        <div class="min-h-screen bg-slate-50/50 py-6 px-0 md:px-4 sm:px-6 lg:px-8 font-sans">
+            <div class="max-w-7xl mx-auto">
+
+                @if (paymentDetails) {
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+
+                    <!-- 1. Order Summary Section -->
+                    <section
+                        class="lg:col-span-1 bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-6 overflow-auto lg:h-screen">
+                        <p class="text-xl font-bold text-slate-800 tracking-tight border-b border-slate-100 pb-3">
+                            Order Summary
+                        </p>
+
+                        <div class="divide-y divide-slate-100 max-h-[380px] overflow-y-auto pr-2 custom-scrollbar">
+                            @for (item of paymentDetails.cartData; track item._id) {
+                            <div class="flex items-start gap-4 py-4 first:pt-0 last:pb-0 group">
+                                <div
+                                    class="w-20 h-20 bg-slate-50 rounded-xl border border-slate-100 flex-shrink-0 overflow-hidden flex items-center justify-center p-1">
+                                    <img [src]="item.productId.image" [alt]="item.productId.name"
+                                        class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300" />
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-start gap-2">
+                                        <h3 class="text-sm font-semibold text-slate-800 line-clamp-2 leading-snug">
+                                            {{ item.productId.name }}
+                                        </h3>
+                                        <span class="text-sm font-bold text-slate-900 whitespace-nowrap">
+                                            ₹{{ item.productId.price }}
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-0.5 capitalize">{{ item.productId.category }}
+                                    </p>
+
+                                    <div class="flex items-center justify-between mt-3">
+                                        <div
+                                            class="flex items-center border border-slate-200 rounded-lg px-2 py-0.5 bg-slate-50 text-xs font-medium text-slate-600">
+                                            Qty: {{ item.quantity }}
+                                        </div>
+                                        <span class="text-xs text-slate-400 font-medium">Sub: ₹{{ item.productId.price *
+                                            item.quantity }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                        <div
+                            class="pt-4 border-t border-slate-100 flex justify-between items-center text-sm font-semibold text-slate-500">
+                            <span>Items Subtotal</span>
+                            <span class="text-slate-900 font-bold">₹{{ paymentDetails.productTotal }}</span>
+                        </div>
+                    </section>
+
+                    <!-- 2. Shipping Address Section -->
+                    <section
+                        class="lg:col-span-1 bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-6 overflow-auto lg:h-screen">
+                        <p class="text-xl font-bold text-slate-800 tracking-tight border-b border-slate-100 pb-3">
+                            Shipping Address
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                            @for (addr of addresses; track addr._id) {
+                            <label
+                                class="relative border-2 rounded-xl p-4 flex flex-col justify-between cursor-pointer select-none transition-all duration-300 transform active:scale-[0.99]"
+                                [class.border-indigo-600]="selectedAddressId === addr._id"
+                                [class.shadow-md]="selectedAddressId === addr._id"
+                                [class.border-slate-200]="selectedAddressId !== addr._id"
+                                [class.hover:border-slate-300]="selectedAddressId !== addr._id">
+                                <input type="radio" name="shippingAddress" [value]="addr._id"
+                                    (change)="onAddressSelect(addr._id)" class="sr-only" />
+
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <div class="w-4 h-4 rounded-full border flex items-center justify-center transition-all duration-200"
+                                            [class.border-indigo-600]="selectedAddressId === addr._id"
+                                            [class.border-slate-300]="selectedAddressId !== addr._id">
+                                            @if (selectedAddressId === addr._id) {
+                                            <div class="w-2 h-2 rounded-full bg-indigo-600 animate-scale-up"></div>
+                                            }
+                                        </div>
+                                        <span
+                                            class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-600">
+                                            {{ addr.addressType }}
+                                        </span>
+                                    </div>
+
+                                    <div class="text-sm text-slate-600 space-y-0.5 font-medium leading-relaxed">
+                                        <p class="text-slate-800 font-bold">{{ addr.area }}</p>
+                                        <p>{{ addr.landmark }}</p>
+                                        <p>{{ addr.city }}, {{ addr.state }}</p>
+                                        <p class="text-slate-400 text-xs tracking-wider font-semibold">{{ addr.pincode
+                                            }}</p>
+                                    </div>
+                                </div>
+
+
+                            </label>
+                            }
+                        </div>
+
+                        <button type="button"
+                            [routerLink]="['/dashboard']"
+                            class="w-full py-3.5 border-2 border-dashed border-slate-200 hover:border-indigo-500 rounded-xl flex items-center justify-center gap-2 text-sm font-bold text-slate-500 hover:text-indigo-600 bg-slate-50/50 hover:bg-white transition-all duration-300 active:scale-[0.99]">
+                            <span class="text-lg font-normal">+</span> Ship to a new address
+                        </button>
+                    </section>
+                    <!-- 3. Price Summary Section -->
+                    <section class="lg:col-span-1 space-y-4 overflow-auto lg:h-screen">
+                        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-4">
+                            <p class="text-lg font-bold text-slate-800 tracking-tight border-b border-slate-100 pb-3">
+                                Price Summary
+                            </p>
+
+                            <div class="space-y-3 text-sm text-slate-600 font-medium">
+                                <div class="flex justify-between items-center">
+                                    <span>Subtotal</span>
+                                    <span class="text-slate-800 font-semibold">₹{{ paymentDetails.productTotal }}</span>
+                                </div>
+
+                                <div class="flex justify-between items-center">
+                                    <span>Estimated Delivery</span>
+                                    <span class="text-emerald-600 font-semibold">
+                                        @if (paymentDetails.deliveryCharge > 0) {
+                                        +₹{{ paymentDetails.deliveryCharge }}
+                                        } @else {
+                                        FREE
+                                        }
+                                    </span>
+                                </div>
+
+                                <div class="flex justify-between items-center text-rose-600">
+                                    <span>Discount Applied</span>
+                                    <span class="font-semibold">-₹{{ paymentDetails.discount }}</span>
+                                </div>
+
+                                <div class="pt-4 border-t border-slate-100 flex justify-between items-baseline">
+                                    <span class="text-base font-bold text-slate-800">Estimated Total</span>
+                                    <span class="text-2xl font-extrabold text-slate-900 tracking-tight">
+                                        ₹{{ paymentDetails.totalPrice }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Actions Controls -->
+                        <div class="flex flex-col md:flex-row items-center gap-3 w-full">
+                            <button type="button"
+                                class="flex-1 py-3.5 px-4 bg-white border border-slate-200 hover:border-slate-300 text-sm font-bold text-slate-700 rounded-xl transition-all duration-200 shadow-sm hover:shadow active:scale-[0.98] text-center w-full md:w-fit">
+                                Back to Cart
+                            </button>
+
+                            <button type="button" [disabled]="!selectedAddressId" matStepperNext
+                                class="flex-1 py-3.5 px-4 bg-teal-600 hover:bg-teal-700 disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none font-bold text-sm text-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 active:scale-[0.98] w-full md:w-fit">
+                                Proceed to Payment
+                            </button>
+                        </div>
+                    </section>
+
+                </div>
+                } @else {
+                <!-- Fallback Empty State View -->
+                <div
+                    class="bg-white rounded-2xl border border-slate-100 p-12 text-center max-w-md mx-auto shadow-sm animate-fade-in">
+                    <div
+                        class="w-16 h-16 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold ">
+                        !</div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">No Order Context Found</h3>
+                    <p class="text-sm text-slate-500 mb-6">Your checkout state could not be resolved. Please return to
+                        the basket interface.</p>
+                    <button type="button"
+                        class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-sm font-semibold text-white rounded-xl transition-colors w-full md:w-fit">
+                        Return to Cart
+                    </button>
+                </div>
+                }
+
+            </div>
+        </div>
+
+    </mat-step>
+
+
+    <mat-step label="Payment" [editable]="false">
+        <div class="max-w-lg mx-auto py-4">
+            <!-- Main Card -->
+            <div class="bg-gray-50 rounded-2xl border border-slate-300 shadow-sm px-6 py-4 md:p-8 space-y-6">
+
+                <!-- Header -->
+                <div class="text-center pb-2 border-b border-slate-100">
+                    <div
+                        class="w-12 h-8 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mx-auto text-xl">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <p class="text-xl font-bold text-slate-900">Payment Method</p>
+                    <p class="text-sm text-slate-500 mt-1">Select how you want to pay for your order</p>
+                </div>
+
+                <!-- Payment Options -->
+                <div class="space-y-3">
+                    <!-- COD Option -->
+                    <!-- COD Option - Fixed -->
+                    <label
+                        class="group relative border-2 rounded-2xl p-5 cursor-pointer transition-all duration-300 hover:shadow-md block"
+                        [class.border-teal-500]="selectedPaymentMethod === 'COD'"
+                        [class.bg-teal-50]="selectedPaymentMethod === 'COD'"
+                        [class.shadow-sm]="selectedPaymentMethod === 'COD'"
+                        [class.border-slate-200]="selectedPaymentMethod!== 'COD'"
+                        [class.hover:border-slate-300]="selectedPaymentMethod!== 'COD'">
+
+                        <input type="radio" name="paymentMethod" value="COD" [(ngModel)]="selectedPaymentMethod"
+                            class="sr-only" />
+
+                        <div class="flex items-start gap-4">
+                            <!-- Icon -->
+                            <div class="w-14 h-14 rounded-xl flex items-center justify-center text-2xl transition-colors flex-shrink-0"
+                                [class.bg-teal-100]="selectedPaymentMethod === 'COD'"
+                                [class.text-teal-600]="selectedPaymentMethod === 'COD'"
+                                [class.bg-slate-100]="selectedPaymentMethod!== 'COD'"
+                                [class.text-slate-500]="selectedPaymentMethod!== 'COD'">
+                                <i class="fas fa-hand-holding-dollar"></i>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between gap-3">
+                                    <p class="text-base font-bold text-slate-800">Cash on Delivery</p>
+                                    <!-- Custom Radio -->
+                                    <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all flex-shrink-0"
+                                        [class.border-teal-500]="selectedPaymentMethod === 'COD'"
+                                        [class.border-slate-300]="selectedPaymentMethod!== 'COD'">
+                                        @if (selectedPaymentMethod === 'COD') {
+                                        <div class="w-2.5 h-2.5 rounded-full bg-teal-500"></div>
+                                        }
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-500 mt-1">Pay with cash when your order arrives</p>
+                                <div class="flex items-center gap-1.5 mt-3">
+                                    <span
+                                        class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">No
+                                        extra charges</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Online Payment - Disabled -->
+                    <div class="relative border border-slate-200 rounded-2xl p-5 bg-slate-50/50">
+                        <div class="absolute inset-0 bg-white/40 backdrop-blur-[1px] rounded-2xl"></div>
+                        <div class="flex items-start gap-4 opacity-60">
+                            <div
+                                class="w-14 h-14 rounded-xl bg-slate-200 text-slate-400 flex items-center justify-center text-2xl">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-base font-bold text-slate-600">Cards, UPI & Netbanking</p>
+                                    <span
+                                        class="text-xs font-bold text-slate-500 bg-slate-200 px-2 py-0.5 rounded-md">Coming
+                                        Soon</span>
+                                </div>
+                                <p class="text-sm text-slate-500 mt-1">Pay securely with Razorpay</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Total Strip -->
+                <div class="bg-slate-50 rounded-xl p-4 flex items-center justify-between">
+                    <span class="text-sm font-medium text-slate-600">Total Amount</span>
+                    <span class="text-2xl font-extrabold text-slate-900">₹{{ paymentDetails?.totalPrice }}</span>
+                </div>
+
+                <!-- Actions -->
+                <!-- Actions -->
+                <div class="grid grid-cols-2 gap-3 pt-2">
+                    <button matStepperPrevious type="button"
+                        class="group w-full py-3.5 px-4 bg-white border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-sm rounded-xl transition-all duration-200 active:scale-[0.97] shadow-sm hover:shadow flex items-center justify-center gap-2">
+                        <i
+                            class="fas fa-arrow-left text-xs opacity-70 group-hover:-translate-x-0.5 transition-transform"></i>
+                        Back
+                    </button>
+
+                    <button matStepperNext type="button" (click)="orderPlaced(stepper)"
+                        [disabled]="!selectedPaymentMethod"
+                        class="w-full py-3.5 px-4 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 disabled:from-slate-200 disabled:to-slate-200 disabled:text-slate-400 disabled:shadow-none disabled:cursor-not-allowed text-white font-bold text-sm rounded-xl shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40 transition-all duration-200 active:scale-[0.97] flex items-center justify-center gap-2">
+                        <span>Place Order</span>
+                        <i class="fas fa-arrow-right text-xs opacity-90"></i>
+                    </button>
+                </div>
+
+                <!-- Trust Badge -->
+                <div class="flex items-center justify-center gap-2 text-xs text-slate-400 pt-2">
+                    <i class="fas fa-lock"></i>
+                    <span>Secure checkout • 100% safe</span>
+                </div>
+            </div>
+        </div>
+    </mat-step>
+
+
+    <mat-step label="Done" [editable]="false">
+        <div class="max-w-lg mx-auto py-8 px-0 md:px-4">
+            <!-- Main Card -->
+            <div class="bg-gray-50 rounded-2xl border border-slate-200 shadow-sm p-6 text-center space-y-6">
+
+                <!-- Success Animation -->
+                <div class="relative inline-flex">
+                    <div class="absolute inset-0 bg-emerald-500/20 rounded-full animate-ping"></div>
+                    <div
+                        class="relative w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white text-3xl shadow-lg shadow-emerald-500/40">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+
+                <!-- Message -->
+                <div>
+                    <p class="text-2xl font-extrabold text-slate-900 mb-2">Order Placed Successfully!</p>
+                    <p class="text-slate-500 leading-relaxed">
+                        Thanks for choosing FruitBasket. Your order will be delivered soon.
+                    </p>
+                </div>
+
+                <!-- Order Details Card -->
+                @if (paymentDetails) {
+                <div
+                    class="bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-2xl border border-slate-200/60 p-5 text-left">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-200/80">
+                        <div class="flex items-center gap-2">
+                            <div
+                                class="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-teal-600 shadow-sm">
+                                <i class="fas fa-receipt text-sm"></i>
+                            </div>
+                            <span class="text-sm font-bold text-slate-700">Order Summary</span>
+                        </div>
+                        <span
+                            class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-lg">COD</span>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-slate-600">Total Items</span>
+                            <span class="text-sm font-bold text-slate-800">{{ paymentDetails.cartData?.length || 0 }}
+                                products</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-3 border-t border-slate-200/80">
+                            <span class="text-base font-semibold text-slate-700">Amount to Pay</span>
+                            <span class="text-2xl font-extrabold text-teal-600">₹{{ paymentDetails.totalPrice }}</span>
+                        </div>
+                    </div>
+                </div>
+                }
+
+                <!-- Info Strip -->
+                <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-start gap-3 text-left">
+                    <i class="fas fa-info-circle text-blue-500 mt-0.5"></i>
+                    <p class="text-xs text-blue-700 leading-relaxed">
+                        You’ll receive an SMS confirmation shortly. Pay with cash when your order arrives at your
+                        doorstep.
+                    </p>
+                </div>
+
+                <!-- Actions -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <button type="button"
+                        (click)="viewOrderDetails()"
+                        class="w-full py-3.5 px-4 bg-white border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-sm rounded-xl transition-all duration-200 active:scale-[0.97] flex items-center justify-center gap-2">
+                        <i class="fas fa-file-lines text-xs opacity-70"></i>
+                        View Order
+                    </button>
+
+                    <button type="button" (click)="navigateToHome()"
+                        class="w-full py-3.5 px-4 bg-gradient-to-r from-slate-900 to-slate-800 hover:from-slate-800 hover:to-slate-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-slate-900/20 hover:shadow-xl transition-all duration-200 active:scale-[0.97] flex items-center justify-center gap-2">
+                        <i class="fas fa-store text-xs opacity-90"></i>
+                        Continue Shopping
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Help Text -->
+            <p class="text-xs text-slate-400 text-center mt-6">
+                Need help? <span class="text-teal-600 font-semibold cursor-pointer hover:underline">Contact
+                    Support</span>
+            </p>
+        </div>
+    </mat-step>
+
+</mat-stepper>

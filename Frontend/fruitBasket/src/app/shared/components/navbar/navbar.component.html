@@ -1,0 +1,67 @@
+<nav class="sticky top-0 left-0 w-full z-50 bg-emerald-600">
+  <div class="container mx-auto flex items-center justify-between px-6 py-3">
+    <img src="assets/logo/fruitBasket.png" alt="Logo" class="w-56" />
+
+    <div class="hidden lg:flex lg:items-center lg:space-x-8 text-lg font-medium">
+      <a [routerLink]="['/home']" routerLinkActive="text-lime-300"
+        class="text-gray-100 hover:text-lime-300 transition duration-300">Home</a>
+      <a [routerLink]="['/shop']" routerLinkActive="text-lime-300"
+        class="text-gray-100 hover:text-lime-300 transition duration-300">Shop</a>
+      <a [routerLink]="['/about-us']" routerLinkActive="text-lime-300"
+        class="text-gray-100 hover:text-lime-300 transition duration-300">About Us</a>
+      <a [routerLink]="['/contact-us']" routerLinkActive="text-lime-300"
+        class="text-gray-100 hover:text-lime-300 transition duration-300">Contact</a>
+
+      <a [routerLink]="['/user-cart']" class="text-gray-100 hover:text-lime-300 relative flex items-center p-1"
+        routerLinkActive="text-lime-300">
+        <i class="fa-solid fa-bag-shopping text-2xl"></i>
+      </a>
+      <a [routerLink]="['/dashboard']" class="text-gray-100 hover:text-lime-300 relative flex items-center p-1"
+        routerLinkActive="text-lime-300">
+        <i class="fa fa-user-circle text-2xl"></i>
+      </a>
+
+    </div>
+  </div>
+</nav>
+
+<div
+  class="fixed bottom-0 left-0 w-full z-50 bg-emerald-700 text-gray-100 lg:hidden shadow-2xl border-t border-emerald-500">
+  <div class="flex justify-around items-center h-16">
+
+    <a [routerLink]="['/home']" routerLinkActive="text-lime-300"
+      class="flex flex-col items-center justify-center p-1 text-xs transition duration-300 hover:text-lime-300">
+      <i class="fa-solid fa-home text-xl"></i>
+      <span>Home</span>
+    </a>
+
+    <a [routerLink]="['/shop']" routerLinkActive="text-lime-300"
+      class="flex flex-col items-center justify-center p-1 text-xs transition duration-300 hover:text-lime-300">
+      <i class="fa-solid fa-apple-whole text-xl"></i>
+      <span>Shop</span>
+    </a>
+
+    <a [routerLink]="['/about-us']" routerLinkActive="text-lime-300"
+      class="flex flex-col items-center justify-center p-1 text-xs transition duration-300 hover:text-lime-300">
+      <i class="fa-solid fa-users text-xl"></i> <span>About Us</span>
+    </a>
+
+    <a [routerLink]="['/user-cart']" routerLinkActive="text-lime-300"
+      class="flex flex-col items-center justify-center p-1 text-xs transition duration-300 hover:text-lime-300">
+      <i class="fa-solid fa-bag-shopping text-xl"></i>
+      <span>Cart</span>
+    </a>
+
+    <a [routerLink]="['/dashboard']" routerLinkActive="text-lime-300"
+      class="flex flex-col items-center justify-center p-1 text-xs transition duration-300 hover:text-lime-300">
+      <i class="fa fa-user-circle text-xl"></i>
+      <span>Account</span>
+    </a>
+
+    <a [routerLink]="['/contact-us']" routerLinkActive="text-lime-300"
+      class="flex flex-col items-center justify-center p-1 text-xs transition duration-300 hover:text-lime-300">
+      <i class="fa-solid fa-headset text-xl"></i>
+      <span>Contact</span>
+    </a>
+  </div>
+</div>

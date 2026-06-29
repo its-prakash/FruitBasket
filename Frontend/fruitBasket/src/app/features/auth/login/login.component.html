@@ -1,0 +1,127 @@
+<!-- Main Centered Viewport Container -->
+<div class="min-h-screen w-full flex items-center justify-center bg-center bg-cover md:p-6"
+    style="background-image: linear-gradient(to bottom, rgba(6, 78, 59, 0.45), rgba(6, 78, 59, 0.65)), url('assets/images/blue-background.jpg')">
+
+  <!-- Adaptive Card Container (Full screen on mobile, matching bounded wireframe layout on desktop) -->
+  <div class="w-full h-screen min-h-screen md:min-h-0 md:h-auto md:max-w-3xl bg-emerald-50 rounded-none md:rounded-3xl shadow-none md:shadow-xl border-0 md:border md:border-emerald-100 overflow-y-auto flex items-center justify-center transition-all duration-300">
+
+    <!-- Card Content Layer (Side-by-side flex layout on desktop, stacked on mobile) -->
+    <div class="w-full py-8 px-6 sm:px-10 flex flex-col md:flex-row items-center gap-8 md:gap-12 my-auto">
+
+      <!-- Left Column: Branding Logo Component (Matches Register Side Block Layout) -->
+      <div class="w-full md:w-2/5 flex flex-col items-center justify-center text-center">
+        <div class="w-28 h-28 sm:w-32 sm:h-32 bg-white rounded-full flex items-center justify-center shadow-sm p-4 border border-emerald-100/50 mb-3">
+          <img src="assets/logo/fruitBasketVertical.png" id="company-logo" alt="Fruit Basket Company Logo" class="w-full h-full object-contain" />
+        </div>
+        <p class="text-4xl font-black text-slate-800 tracking-tight hidden md:block">
+          Welcome Back!
+        </p>
+        <p class="text-xs text-slate-500 font-medium mt-1 hidden md:block">
+          Sign in to access your fresh basket
+        </p>
+      </div>
+
+      <!-- Right Column: Sign In Form Layer -->
+      <form class="w-full md:w-3/5" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+
+        <!-- Mobile-Only Header Title Context -->
+        <p class="text-xl font-extrabold text-gray-900 text-center mb-5 md:hidden" id="welcome-title">
+          Welcome Back!
+        </p>
+
+        <!-- Identifier Form Group -->
+        <div class="mb-3">
+          <label for="identifier" class="block text-xs font-semibold text-gray-700 mb-1">
+            Email, Username, or Phone
+          </label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-emerald-600">
+              <i class="fa fa-user text-sm" aria-hidden="true"></i>
+            </span>
+            <input id="identifier" type="text" formControlName="identifier"
+              placeholder="Enter email, username, or mobile number"
+              class="w-full rounded-xl border border-gray-300 pl-10 pr-4 py-2.5 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200" />
+          </div>
+
+          <!-- Unified Micro Validation Wrapper -->
+          <div class="min-h-[16px] mt-0.5">
+            <ng-container *ngIf="signInForm.controls['identifier'].touched && signInForm.controls['identifier'].invalid">
+              <small *ngIf="signInForm.controls['identifier'].hasError('required')" class="text-red-600 text-[11px] block font-medium">
+                This field is required.
+              </small>
+              <small *ngIf="signInForm.controls['identifier'].hasError('invalidIdentifier')" class="text-red-600 text-[11px] block font-medium">
+                Please enter a valid account identifier.
+              </small>
+            </ng-container>
+          </div>
+        </div>
+
+        <!-- Password Form Group -->
+        <div class="mb-4">
+          <label for="password" class="block text-xs font-semibold text-gray-700 mb-1">
+            Password
+          </label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-emerald-600">
+              <i class="fa fa-lock text-sm" aria-hidden="true"></i>
+            </span>
+            <input id="password" type="password" formControlName="password" placeholder="Enter your password"
+              class="w-full rounded-xl border border-gray-300 pl-10 pr-4 py-2.5 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200" />
+          </div>
+
+          <!-- Password Actions Dynamic Footer -->
+          <div class="flex items-start justify-between min-h-[18px] mt-0.5">
+            <div>
+              <small *ngIf="signInForm.controls['password'].hasError('required') && signInForm.controls['password'].touched" class="text-red-600 text-[11px] font-medium">
+                Password is required.
+              </small>
+            </div>
+            <button type="button" class="text-xs font-medium text-emerald-600 hover:text-emerald-700 focus:outline-none focus:underline transition">
+              Forgot Password?
+            </button>
+          </div>
+        </div>
+
+        <!-- Submission Trigger -->
+        <div class="mb-4">
+          <button type="submit" [disabled]="signInForm.invalid"
+            class="w-full bg-gradient-to-r from-emerald-500 to-lime-500 hover:from-emerald-600 hover:to-lime-600 text-white font-semibold px-4 py-3 rounded-xl shadow-sm text-sm transition-all transform active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none">
+            Login
+          </button>
+        </div>
+
+        <!-- Secondary Navigation Route (Layered for Clickability and Tap Safety) -->
+        <div class="text-center mb-4 relative z-10">
+          <a routerLink="/register" class="inline-flex items-center justify-center text-gray-600 hover:text-emerald-600 focus:text-emerald-600 font-medium text-xs transition focus:outline-none focus:underline py-2 px-4 cursor-pointer">
+            <span>Don’t have an account?</span>
+            <span class="text-emerald-600 font-bold ml-1">Sign Up</span>
+          </a>
+        </div>
+
+        <!-- UI Decorative Separator -->
+        <div class="relative my-4 flex items-center justify-center">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-200"></div>
+          </div>
+          <span class="relative px-2 bg-emerald-50 text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
+            Or Sign In with
+          </span>
+        </div>
+
+        <!-- Alternative Authentication Buttons -->
+        <div class="flex justify-center gap-4">
+          <button type="button" aria-label="Sign in with Google" class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-600 hover:bg-gray-50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            <i class="fa-brands fa-google text-base"></i>
+          </button>
+          <button type="button" aria-label="Sign in with GitHub" class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-600 hover:bg-gray-50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            <i class="fa-brands fa-github text-base"></i>
+          </button>
+          <button type="button" aria-label="Sign in with Facebook" class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-600 hover:bg-gray-50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            <i class="fa-brands fa-facebook text-base"></i>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,188 @@
+<!-- Main Centered Viewport Canvas with Dynamic Image Background Overlay -->
+<div class="min-h-screen w-full flex items-center justify-center bg-center bg-cover md:p-6"
+    style="background-image: linear-gradient(to bottom, rgba(6, 78, 59, 0.45), rgba(6, 78, 59, 0.65)), url('assets/images/blue-background.jpg')">
+
+    <!-- Adaptive Card Container (Full screen on mobile, bounded wireframe card on desktop) -->
+    <div
+        class="w-full h-screen min-h-screen md:min-h-0 md:h-auto md:max-w-4xl bg-emerald-50 md:rounded-3xl shadow-none md:shadow-2xl border-0 md:border md:border-emerald-100 overflow-y-auto flex items-center justify-center transition-all duration-300">
+
+        <!-- Card Inner Content Layer (Switches to a clean side-by-side flex layout on desktop) -->
+        <div class="w-full py-8 px-6 sm:px-10 flex flex-col md:flex-row items-center gap-8 md:gap-12 my-auto">
+
+            <!-- Left Column: Branding Logo (Exactly like your layout diagram) -->
+            <div class="w-full md:w-1/3 flex flex-col items-center justify-center text-center">
+                <div
+                    class="w-28 h-28 sm:w-36 sm:h-36 bg-white rounded-full flex items-center justify-center shadow-md p-4 border border-emerald-100/50 mb-3">
+                    <img src="assets/logo/fruitBasketVertical.png" id="company-logo" alt="Fruit Basket Logo"
+                        class="w-full h-full object-contain" />
+                </div>
+                <p class="text-2xl font-black text-slate-800 tracking-tight hidden md:block">
+                    Create Account
+                </p>
+                <p class="text-xs text-slate-500 font-medium mt-1 hidden md:block">
+                    Join us to get your fresh basket
+                </p>
+            </div>
+
+            <!-- Right Column: Form Fields and Button Layout Area -->
+            <form [formGroup]="signUpForm" class="w-full md:w-2/3" (ngSubmit)="onSubmit()">
+
+                <!-- Mobile-Only Header Title Context -->
+                <p class="!text-4xl font-extrabold text-slate-900 text-center mb-6 md:hidden">
+                    Create Account
+                </p>
+
+                <!-- The 2-Column Inputs Grid (Single-column on mobile, Double-column on desktop) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+
+                    <!-- Full Name Field Component -->
+                    <div>
+                        <label for="fullName"
+                            class="block text-xs font-bold text-slate-700 tracking-wide mb-1.5 pl-0.5">
+                            Full Name
+                        </label>
+                        <div class="relative">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-emerald-600">
+                                <i class="fa fa-user text-sm" aria-hidden="true"></i>
+                            </span>
+                            <input id="fullName" type="text" placeholder="Enter full name" formControlName="fullName"
+                                class="w-full rounded-xl border border-gray-300 pl-10 pr-4 py-2.5 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200" />
+                        </div>
+                        <div class="min-h-[18px] mt-0.5 pl-1">
+                            <small
+                                *ngIf="signUpForm.controls['fullName'].hasError('required') && signUpForm.controls['fullName'].touched"
+                                class="text-red-600 text-[11px] block font-medium">
+                                Full name is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Username Field Component -->
+                    <div>
+                        <label for="userName"
+                            class="block text-xs font-bold text-slate-700 tracking-wide mb-1.5 pl-0.5">
+                            Username
+                        </label>
+                        <div class="relative">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-emerald-600">
+                                <i class="fa fa-user-circle text-sm" aria-hidden="true"></i>
+                            </span>
+                            <input id="userName" type="text" placeholder="Choose unique username"
+                                formControlName="userName"
+                                class="w-full rounded-xl border border-gray-300 pl-10 pr-4 py-2.5 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200" />
+                        </div>
+                        <div class="min-h-[18px] mt-0.5 pl-1">
+                            <small
+                                *ngIf="signUpForm.controls['userName'].hasError('required') && signUpForm.controls['userName'].touched"
+                                class="text-red-600 text-[11px] block font-medium">
+                                Username is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Email Address Field Component -->
+                    <div>
+                        <label for="email" class="block text-xs font-bold text-slate-700 tracking-wide mb-1.5 pl-0.5">
+                            Email Address
+                        </label>
+                        <div class="relative">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-emerald-600">
+                                <i class="fa fa-envelope text-sm" aria-hidden="true"></i>
+                            </span>
+                            <input id="email" type="email" placeholder="name@example.com" formControlName="email"
+                                class="w-full rounded-xl border border-gray-300 pl-10 pr-4 py-2.5 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200" />
+                        </div>
+                        <div class="min-h-[18px] mt-0.5 pl-1">
+                            <small
+                                *ngIf="signUpForm.controls['email'].hasError('email') && signUpForm.controls['email'].touched"
+                                class="text-red-600 text-[11px] block font-medium">
+                                Invalid email format.
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Number Field Component -->
+                    <div>
+                        <label for="mobileNo"
+                            class="block text-xs font-bold text-slate-700 tracking-wide mb-1.5 pl-0.5">
+                            Mobile No
+                        </label>
+                        <div class="relative">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-emerald-600">
+                                <i class="fa fa-phone text-sm" aria-hidden="true"></i>
+                            </span>
+                            <input id="mobileNo" type="tel" placeholder="10-digit number" formControlName="mobileNo"
+                                class="w-full rounded-xl border border-gray-300 pl-10 pr-4 py-2.5 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200" />
+                        </div>
+                        <div class="min-h-[18px] mt-0.5 pl-1">
+                            <small
+                                *ngIf="signUpForm.controls['mobileNo'].hasError('pattern') && signUpForm.controls['mobileNo'].touched"
+                                class="text-red-600 text-[11px] block font-medium">
+                                Invalid mobile number.
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Password Field Component -->
+                    <div>
+                        <label for="password"
+                            class="block text-xs font-bold text-slate-700 tracking-wide mb-1.5 pl-0.5">
+                            Password
+                        </label>
+                        <div class="relative">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-emerald-600">
+                                <i class="fa fa-lock text-sm" aria-hidden="true"></i>
+                            </span>
+                            <input id="password" type="password" placeholder="••••••••" formControlName="password"
+                                class="w-full rounded-xl border border-gray-300 pl-10 pr-4 py-2.5 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200" />
+                        </div>
+                        <div class="min-h-[18px] mt-0.5 pl-1"></div>
+                    </div>
+
+                    <!-- Confirm Password Field Component -->
+                    <div>
+                        <label for="confirmPassword"
+                            class="block text-xs font-bold text-slate-700 tracking-wide mb-1.5 pl-0.5">
+                            Confirm Password
+                        </label>
+                        <div class="relative">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-emerald-600">
+                                <i class="fa fa-key text-sm" aria-hidden="true"></i>
+                            </span>
+                            <input id="confirmPassword" type="password" placeholder="••••••••"
+                                formControlName="confirmPassword"
+                                class="w-full rounded-xl border border-gray-300 pl-10 pr-4 py-2.5 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200" />
+                        </div>
+                        <div class="min-h-[18px] mt-0.5 pl-1"></div>
+                    </div>
+
+                </div>
+
+                <!-- Full-Width Horizontal Action Area Box (Spans right beneath fields per layout wireframe) -->
+                <div class="mt-4 mb-4">
+                    <button type="submit" [disabled]="signUpForm.invalid"
+                        class="w-full bg-gradient-to-r from-emerald-500 to-lime-500 hover:from-emerald-600 hover:to-lime-600 text-white font-bold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all transform active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none">
+                        Register
+                    </button>
+                </div>
+
+                <!-- Secondary Account Back Link Navigation Route -->
+                <div class="text-center mt-4 relative z-10">
+                    <a [routerLink]="['/login']"
+                        class="inline-flex items-center justify-center text-gray-600 hover:text-emerald-600 focus:text-emerald-600 font-medium text-xs transition-colors focus:outline-none focus:underline py-2 px-4 cursor-pointer">
+                        <span>Already have an account?</span>
+                        <span class="text-emerald-600 font-bold ml-1 hover:underline">Sign In</span>
+                    </a> 
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
