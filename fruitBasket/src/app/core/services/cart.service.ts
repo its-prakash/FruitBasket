@@ -11,13 +11,15 @@ export class CartService {
 
   // baseUrl = "http://localhost:3000/api/cart"
   baseUrl = "https://fruitbasket-n8by.onrender.com/api/cart"
-  
+
   addToCart(productId: string, quantity: number): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/add-cart`, { productId, quantity });
   }
 
   getCart(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/getCart`);
+    return this.http.get<any>(`${this.baseUrl}/getCart`, {
+      withCredentials: true
+    });
   }
 
   updateQuantity(productId: string, quantity: number): Observable<any> {
