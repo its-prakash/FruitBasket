@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-app.use(express.json());
 
 const cors = require('cors')
 app.use(cors({
@@ -12,6 +11,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
 }));
 
+app.use(express.json());
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
