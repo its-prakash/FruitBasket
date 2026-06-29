@@ -4,7 +4,10 @@ app.use(express.json());
 
 const cors = require('cors')
 app.use(cors({
-    origin: ['http://localhost:4200'],
+    origin: [
+        'http://localhost:4200',
+        'https://fruit-basket-seven.vercel.app'
+    ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
 }));
