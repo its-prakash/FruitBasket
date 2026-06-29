@@ -7,15 +7,19 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   const router = inject(Router)
 
+  const token = localStorage.getItem("authToken");
+
   const clonedRequest = req.clone({
-    withCredentials : true
+    setHeaders: token ? { Authorization: `Bearer ${token}` } : {}
   })
 
   return next(clonedRequest).pipe(
-    catchError((err : HttpErrorResponse) =>{
-      if(err.status === 401){
+    catchError((err: HttpErrorResponse) => {
+      if (err.status === 401) {
         localStorage.removeItem("authToken");
-         router.navigate(['/login']);
+        localStorage.removeItem("userId");
+
+        router.navigate(['/login']);
       }
       return throwError(() => err);
     })

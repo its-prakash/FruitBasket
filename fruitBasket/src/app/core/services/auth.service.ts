@@ -19,7 +19,8 @@ export interface loginDetails {
 
 export interface backendResponse {
   message: string
-  user?: UserProfile
+  token : string,
+  user: UserProfile
 }
 
 export interface UserProfile {
@@ -58,12 +59,12 @@ export class AuthService {
 
         console.log('Login Response:', res);
 
-        const userId = res?.user?._id 
 
-        if (userId) {
-          localStorage.setItem("authToken", userId);
-          this.isLoggedIn.next(true);
-        }
+      if (res && res?.token) {
+        localStorage.setItem("authToken", res.token); 
+        localStorage.setItem("userId", res.user._id);
+        this.isLoggedIn.next(true);
+      }
       })
     )
   }
