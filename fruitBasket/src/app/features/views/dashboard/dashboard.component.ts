@@ -54,7 +54,7 @@ export class DashboardComponent {
   })
 
   ngOnInit(): void {
-    this.userId = localStorage.getItem('authToken')
+    this.userId = localStorage.getItem('userId')
     if (this.userId) this.getCurrentUserDetails(this.userId);
     this.getOrdersHistory()
     this.getUserAddress()
