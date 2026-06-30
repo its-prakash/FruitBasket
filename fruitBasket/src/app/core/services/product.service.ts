@@ -9,8 +9,8 @@ export class ProductService {
 
   public http = inject(HttpClient)
 
-  baseUrl = "http://localhost:3000/api/products"
-  // baseUrl = "https://fruitbasket-n8by.onrender.com/api/products"
+  // baseUrl = "http://localhost:3000/api/products"
+  baseUrl = "https://fruitbasket-n8by.onrender.com/api/products"
 
   getProducts(): Observable<any> {
     return this.http.get(`${this.baseUrl}/products`);
