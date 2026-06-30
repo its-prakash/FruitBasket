@@ -9,8 +9,8 @@ export class CartService {
 
   private http = inject(HttpClient)
 
-  // baseUrl = "http://localhost:3000/api/cart"
-  baseUrl = "https://fruitbasket-n8by.onrender.com/api/cart"
+  baseUrl = "http://localhost:3000/api/cart"
+  // baseUrl = "https://fruitbasket-n8by.onrender.com/api/cart"
 
   addToCart(productId: string, quantity: number): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/add-cart`, { productId, quantity });

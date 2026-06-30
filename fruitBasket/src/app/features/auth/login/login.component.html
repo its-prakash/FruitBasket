@@ -1,17 +1,22 @@
+@if(loader == true){ <app-loader></app-loader> }
+@else {
 <!-- Main Centered Viewport Container -->
 <div class="min-h-screen w-full flex items-center justify-center bg-center bg-cover md:p-6"
-    style="background-image: linear-gradient(to bottom, rgba(6, 78, 59, 0.45), rgba(6, 78, 59, 0.65)), url('assets/images/blue-background.jpg')">
+  style="background-image: linear-gradient(to bottom, rgba(6, 78, 59, 0.45), rgba(6, 78, 59, 0.65)), url('assets/images/blue-background.jpg')">
 
   <!-- Adaptive Card Container (Full screen on mobile, matching bounded wireframe layout on desktop) -->
-  <div class="w-full h-screen min-h-screen md:min-h-0 md:h-auto md:max-w-3xl bg-emerald-50 rounded-none md:rounded-3xl shadow-none md:shadow-xl border-0 md:border md:border-emerald-100 overflow-y-auto flex items-center justify-center transition-all duration-300">
+  <div
+    class="w-full h-screen min-h-screen md:min-h-0 md:h-auto md:max-w-3xl bg-emerald-50 rounded-none md:rounded-3xl shadow-none md:shadow-xl border-0 md:border md:border-emerald-100 overflow-y-auto flex items-center justify-center transition-all duration-300">
 
     <!-- Card Content Layer (Side-by-side flex layout on desktop, stacked on mobile) -->
     <div class="w-full py-8 px-6 sm:px-10 flex flex-col md:flex-row items-center gap-8 md:gap-12 my-auto">
 
       <!-- Left Column: Branding Logo Component (Matches Register Side Block Layout) -->
       <div class="w-full md:w-2/5 flex flex-col items-center justify-center text-center">
-        <div class="w-28 h-28 sm:w-32 sm:h-32 bg-white rounded-full flex items-center justify-center shadow-sm p-4 border border-emerald-100/50 mb-3">
-          <img src="assets/logo/fruitBasketVertical.png" id="company-logo" alt="Fruit Basket Company Logo" class="w-full h-full object-contain" />
+        <div
+          class="w-28 h-28 sm:w-32 sm:h-32 bg-white rounded-full flex items-center justify-center shadow-sm p-4 border border-emerald-100/50 mb-3">
+          <img src="assets/logo/fruitBasketVertical.png" id="company-logo" alt="Fruit Basket Company Logo"
+            class="w-full h-full object-contain" />
         </div>
         <p class="text-4xl font-black text-slate-800 tracking-tight hidden md:block">
           Welcome Back!
@@ -45,11 +50,14 @@
 
           <!-- Unified Micro Validation Wrapper -->
           <div class="min-h-[16px] mt-0.5">
-            <ng-container *ngIf="signInForm.controls['identifier'].touched && signInForm.controls['identifier'].invalid">
-              <small *ngIf="signInForm.controls['identifier'].hasError('required')" class="text-red-600 text-[11px] block font-medium">
+            <ng-container
+              *ngIf="signInForm.controls['identifier'].touched && signInForm.controls['identifier'].invalid">
+              <small *ngIf="signInForm.controls['identifier'].hasError('required')"
+                class="text-red-600 text-[11px] block font-medium">
                 This field is required.
               </small>
-              <small *ngIf="signInForm.controls['identifier'].hasError('invalidIdentifier')" class="text-red-600 text-[11px] block font-medium">
+              <small *ngIf="signInForm.controls['identifier'].hasError('invalidIdentifier')"
+                class="text-red-600 text-[11px] block font-medium">
                 Please enter a valid account identifier.
               </small>
             </ng-container>
@@ -72,11 +80,14 @@
           <!-- Password Actions Dynamic Footer -->
           <div class="flex items-start justify-between min-h-[18px] mt-0.5">
             <div>
-              <small *ngIf="signInForm.controls['password'].hasError('required') && signInForm.controls['password'].touched" class="text-red-600 text-[11px] font-medium">
+              <small
+                *ngIf="signInForm.controls['password'].hasError('required') && signInForm.controls['password'].touched"
+                class="text-red-600 text-[11px] font-medium">
                 Password is required.
               </small>
             </div>
-            <button type="button" class="text-xs font-medium text-emerald-600 hover:text-emerald-700 focus:outline-none focus:underline transition">
+            <button type="button"
+              class="text-xs font-medium text-emerald-600 hover:text-emerald-700 focus:outline-none focus:underline transition">
               Forgot Password?
             </button>
           </div>
@@ -92,7 +103,8 @@
 
         <!-- Secondary Navigation Route (Layered for Clickability and Tap Safety) -->
         <div class="text-center mb-4 relative z-10">
-          <a routerLink="/register" class="inline-flex items-center justify-center text-gray-600 hover:text-emerald-600 focus:text-emerald-600 font-medium text-xs transition focus:outline-none focus:underline py-2 px-4 cursor-pointer">
+          <a routerLink="/register"
+            class="inline-flex items-center justify-center text-gray-600 hover:text-emerald-600 focus:text-emerald-600 font-medium text-xs transition focus:outline-none focus:underline py-2 px-4 cursor-pointer">
             <span>Don’t have an account?</span>
             <span class="text-emerald-600 font-bold ml-1">Sign Up</span>
           </a>
@@ -110,13 +122,16 @@
 
         <!-- Alternative Authentication Buttons -->
         <div class="flex justify-center gap-4">
-          <button type="button" aria-label="Sign in with Google" class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-600 hover:bg-gray-50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          <button type="button" aria-label="Sign in with Google"
+            class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-600 hover:bg-gray-50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
             <i class="fa-brands fa-google text-base"></i>
           </button>
-          <button type="button" aria-label="Sign in with GitHub" class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-600 hover:bg-gray-50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          <button type="button" aria-label="Sign in with GitHub"
+            class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-600 hover:bg-gray-50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
             <i class="fa-brands fa-github text-base"></i>
           </button>
-          <button type="button" aria-label="Sign in with Facebook" class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-600 hover:bg-gray-50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          <button type="button" aria-label="Sign in with Facebook"
+            class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-600 hover:bg-gray-50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
             <i class="fa-brands fa-facebook text-base"></i>
           </button>
         </div>
@@ -125,3 +140,4 @@
     </div>
   </div>
 </div>
+}

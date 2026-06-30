@@ -3,6 +3,8 @@ import { AuthService } from '../../../core/services/auth.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImportsModule } from '../../../shared/modules/imports/imports.module';
 import { Router, RouterLink } from '@angular/router';
+import { LoaderComponent } from '../../../shared/components/loader/loader.component';
+import { finalize } from 'rxjs';
 
 
 @Component({
@@ -10,12 +12,15 @@ import { Router, RouterLink } from '@angular/router';
   standalone: true,
   imports: [
     ImportsModule,
-    RouterLink
+    RouterLink,
+    LoaderComponent
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
+
+  loader = false
 
   private _authService = inject(AuthService)
   public fb = inject(FormBuilder)
@@ -48,7 +53,12 @@ export class RegisterComponent {
     }
 
     const data = this.signUpForm.getRawValue();
-    this._authService.registerUser(data).subscribe({
+
+    this.loader = true
+
+    this._authService.registerUser(data)
+    .pipe(finalize(()=>{this.loader = false}))
+    .subscribe({
       next: (res) => {
         console.log(res)
         this.router.navigate(['/login'])

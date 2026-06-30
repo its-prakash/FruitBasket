@@ -48,8 +48,8 @@ export const routes: Routes = [
             },
 
             {
-                path : "payment",
-                loadComponent : () => import('./features/views/payment/payment.component').then(m => m.PaymentComponent)
+                path: "payment",
+                loadComponent: () => import('./features/views/payment/payment.component').then(m => m.PaymentComponent)
             }
 
         ]
@@ -64,6 +64,11 @@ export const routes: Routes = [
     {
         path: "login",
         loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent)
+    },
+
+    {
+        path: "loader",
+        loadComponent: () => import('./shared/components/loader/loader.component').then(m => m.LoaderComponent)
     }
 
 

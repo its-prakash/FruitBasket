@@ -1,5 +1,8 @@
+
+@if(loader == true){ <app-loader></app-loader> }
 <!-- Main Centered Viewport Canvas with Dynamic Image Background Overlay -->
-<div class="min-h-screen w-full flex items-center justify-center bg-center bg-cover md:p-6"
+@else{
+    <div class="min-h-screen w-full flex items-center justify-center bg-center bg-cover md:p-6"
     style="background-image: linear-gradient(to bottom, rgba(6, 78, 59, 0.45), rgba(6, 78, 59, 0.65)), url('assets/images/blue-background.jpg')">
 
     <!-- Adaptive Card Container (Full screen on mobile, bounded wireframe card on desktop) -->
@@ -186,3 +189,4 @@
         </div>
     </div>
 </div>
+}

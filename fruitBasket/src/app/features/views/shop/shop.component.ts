@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ProductService } from '../../../core/services/product.service';
 import { PipesModule } from '../../../shared/modules/pipes/pipes.module';
 import { CartService } from '../../../core/services/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-shop',
@@ -19,6 +20,7 @@ export class ShopComponent {
 
   private _productService = inject(ProductService);
   private _cartService = inject(CartService);
+  private _snakeBar = inject(MatSnackBar)
 
   ngOnInit(): void {
     this.loadProducts();
@@ -65,6 +67,11 @@ export class ShopComponent {
   addToCart(productId: string) {
     this._cartService.addToCart(productId, 1).subscribe({
       next: (res) => {
+        this._snakeBar.open(`Fruit added to your basket!`, '', {
+          duration: 3000,          
+          horizontalPosition: 'center', 
+          verticalPosition: 'top',  
+        })
         console.log('Product added to cart', res);
         this.loadCart();
       },
@@ -88,6 +95,11 @@ export class ShopComponent {
 
     this._cartService.updateQuantity(productId, newQuantity).subscribe({
       next: (res) => {
+        this._snakeBar.open(`Quantity updated`, '', {
+          duration: 3000,          
+          horizontalPosition: 'center', 
+          verticalPosition: 'top',  
+        })
         console.log('Quantity updated', res);
         this.loadCart();
       },

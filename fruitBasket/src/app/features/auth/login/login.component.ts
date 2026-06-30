@@ -3,19 +3,23 @@ import { AuthService, loginDetails } from '../../../core/services/auth.service';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ImportsModule } from '../../../shared/modules/imports/imports.module';
 import { Router, RouterLink } from "@angular/router";
+import { LoaderComponent } from '../../../shared/components/loader/loader.component';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     ImportsModule,
-    RouterLink
-],
+    RouterLink,
+    LoaderComponent
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
 
+  loader = false
   private _authService = inject(AuthService)
   private fb = inject(FormBuilder)
   private router = inject(Router)
@@ -55,7 +59,11 @@ export class LoginComponent {
 
     const payload: loginDetails = this.buildLoginPayload(identifier, password)
 
-    this._authService.loginUser(payload).subscribe({
+    this.loader = true
+
+    this._authService.loginUser(payload)
+    .pipe(finalize(()=>{this.loader = false}))
+    .subscribe({
       next: (res) => {
         console.log('Login success', res);
         this.router.navigate(['/home'])

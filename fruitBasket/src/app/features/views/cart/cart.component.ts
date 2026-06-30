@@ -4,6 +4,7 @@ import { PipesModule } from '../../../shared/modules/pipes/pipes.module';
 import { OrderService } from '../../../core/services/order.service';
 import { Router } from '@angular/router';
 import { A11yModule } from "@angular/cdk/a11y";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cart',
@@ -20,6 +21,7 @@ export class CartComponent {
   private _cartService = inject(CartService)
   private _orderService = inject(OrderService)
   private router = inject(Router)
+  private _snakeBar = inject(MatSnackBar)
 
   cartData: any
 
@@ -42,6 +44,11 @@ export class CartComponent {
   removeFromCart(id: string) {
     this._cartService.removeFromCart(id).subscribe({
       next: (res) => {
+        this._snakeBar.open(`Fruit removed from your basket!`, '', {
+          duration: 3000,          
+          horizontalPosition: 'center', 
+          verticalPosition: 'top',  
+        })
         console.log("Remove from cart Successfully ", res)
         this.getCartData()
       },
@@ -65,6 +72,11 @@ export class CartComponent {
 
     this._cartService.updateQuantity(productId, newQuantity).subscribe({
       next: (res) => {
+        this._snakeBar.open(`Fruit quantity Updated`, '', {
+          duration: 3000,          
+          horizontalPosition: 'center', 
+          verticalPosition: 'top',  
+        })
         console.log('Quantity updated', res);
         this.getCartData();
       },
