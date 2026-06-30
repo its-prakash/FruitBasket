@@ -30,7 +30,7 @@ export class DashboardComponent {
   userData: any
   userId: any
   orders: any
-  userAddress : any
+  userAddress: any
 
   isMobileMenuClosed = true;
   toggleMobileMenu(): void {
@@ -55,7 +55,7 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId')
-    console.log("user userid is: ",this.userId)
+    console.log("user userid is: ", this.userId)
     if (this.userId) this.getCurrentUserDetails(this.userId);
     this.getOrdersHistory()
     this.getUserAddress()
@@ -129,7 +129,7 @@ export class DashboardComponent {
     const rawData = this.addressForm.getRawValue()
     console.log(rawData)
     this._authService.addAddress(rawData).subscribe({
-      next :(res) =>{
+      next: (res) => {
         this.getUserAddress()
         console.log(res)
       }
@@ -137,25 +137,25 @@ export class DashboardComponent {
     this.closeModal()
   }
 
-  getUserAddress(){
+  getUserAddress() {
     this._authService.getAddress().subscribe({
-      next : (res) => {
+      next: (res) => {
         this.userAddress = res?.addresses
-        console.log("user addresses are : ",this.userAddress)
+        console.log("user addresses are : ", this.userAddress)
       },
-      error : (err) => {
-        console.error("Not getting user address :",err)
+      error: (err) => {
+        console.error("Not getting user address :", err)
       }
     })
   }
 
-  deleteUserAddress(addressId : string){
+  deleteUserAddress(addressId: string) {
     this._authService.deleteAddress(addressId).subscribe({
-      next : (res) => {
+      next: (res) => {
         this.getUserAddress()
         console.log("Delete address successfully", res)
       },
-      error :(err) => {
+      error: (err) => {
         console.log("Cannot deleted this address", err)
       }
     })
