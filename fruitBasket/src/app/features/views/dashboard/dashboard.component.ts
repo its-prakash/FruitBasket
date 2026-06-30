@@ -54,7 +54,8 @@ export class DashboardComponent {
   })
 
   ngOnInit(): void {
-    this.userId = localStorage.getItem('authToken')
+    this.userId = localStorage.getItem('userId')
+    console.log("user userid is: ",this.userId)
     if (this.userId) this.getCurrentUserDetails(this.userId);
     this.getOrdersHistory()
     this.getUserAddress()
@@ -63,8 +64,8 @@ export class DashboardComponent {
   getCurrentUserDetails(userId: string) {
     this._authService.getCurrentUser(userId).subscribe({
       next: (res: any) => {
-        this.userData = res?.user
         console.log("current user account details are", this.userData)
+        this.userData = res?.user
       },
       error: (err) => { }
     })
